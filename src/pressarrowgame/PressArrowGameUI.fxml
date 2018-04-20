@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pressarrowgame.PressArrowController">
+   <children>
+      <VBox layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <HBox prefHeight="81.0" prefWidth="600.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time Left:" textAlignment="CENTER" wrappingWidth="122.9404296875" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets left="170.0" top="27.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="time" strokeType="OUTSIDE" strokeWidth="0.0" text="25">
+                     <HBox.margin>
+                        <Insets top="20.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox prefHeight="28.0" prefWidth="600.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Combo" wrappingWidth="460.7275390625">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="25.0" right="15.0" />
+                     </HBox.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Scores">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox prefHeight="79.0" prefWidth="600.0">
+               <children>
+                  <VBox prefHeight="100.0" prefWidth="176.0">
+                     <children>
+                        <HBox prefHeight="45.0" prefWidth="119.0">
+                           <children>
+                              <Text fx:id="combo" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="101.51171875">
+                                 <font>
+                                    <Font size="26.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="25.0" top="10.0" />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <Pane prefHeight="77.0" prefWidth="0.0" />
+                  <VBox prefHeight="64.0" prefWidth="180.0">
+                     <children>
+                        <HBox prefHeight="45.0" prefWidth="180.0">
+                           <children>
+                              <Text fill="#c91111" strokeType="OUTSIDE" strokeWidth="0.0" text="-20" wrappingWidth="109.8212890625">
+                                 <font>
+                                    <Font size="38.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="90.0" />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <Text fx:id="score" strokeType="OUTSIDE" strokeWidth="0.0" text="75">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="127.0" top="10.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ImageView fx:id="imageView1" fitHeight="60.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="15.0" right="12.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fx:id="imageView2" fitHeight="60.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../final-Project/src/arrowhitgame/image3.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="12.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fx:id="imageView3" fitHeight="60.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../final-Project/src/arrowhitgame/image3.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="12.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fx:id="imageView4" fitHeight="60.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../final-Project/src/arrowhitgame/image4.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="12.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fx:id="imageView5" fitHeight="60.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../final-Project/src/arrowhitgame/image2.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="12.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fx:id="imageView6" fitHeight="60.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../final-Project/src/arrowhitgame/image1.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="12.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fx:id="imageView7" fitHeight="60.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../final-Project/src/arrowhitgame/image1.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="12.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fx:id="imageView8" fitHeight="60.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../final-Project/src/arrowhitgame/image3.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="start" mnemonicParsing="false" onAction="#handle" text="Start Game">
+                     <HBox.margin>
+                        <Insets left="15.0" right="15.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="giveup" mnemonicParsing="false" onAction="#handleGiveUp" text="Give UP" />
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="High Scores">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Text>
+                        <HBox prefHeight="24.0" prefWidth="144.0">
+                           <children>
+                              <Text fx:id="player1" strokeType="OUTSIDE" strokeWidth="0.0" text="Player1">
+                                 <HBox.margin>
+                                    <Insets right="25.0" />
+                                 </HBox.margin>
+                              </Text>
+                              <Text fx:id="scPlayer1" strokeType="OUTSIDE" strokeWidth="0.0" text="75" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Text fx:id="player2" strokeType="OUTSIDE" strokeWidth="0.0" text="Player2">
+                                 <HBox.margin>
+                                    <Insets right="25.0" />
+                                 </HBox.margin>
+                              </Text>
+                              <Text fx:id="scPlayer2" strokeType="OUTSIDE" strokeWidth="0.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="170.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
