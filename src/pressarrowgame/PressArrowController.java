@@ -1,7 +1,6 @@
 package pressarrowgame;
 
 import java.awt.event.KeyAdapter;
-
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.event.ActionEvent;
@@ -85,7 +84,7 @@ public class PressArrowController extends KeyAdapter {
 
 	public void keyPressed(KeyEvent e) {
 		System.out.println("===========press==========");
-		System.out.println(combo);
+		System.out.println("combo = " + combo);
 
 		if (e.getCode() == KeyCode.UP) {
 			checkPressed = "up";
@@ -103,212 +102,200 @@ public class PressArrowController extends KeyAdapter {
 		System.out.println(checkPressed);
 	}
 
-	public void pressedUp() {
-		if (checkPressed1 = true  && imageView1.getId() == "up") {
+	private void pressedUp() {
+		if (checkPressed1 == true && imageView1.getId() == "up") {
 			imageView1.setVisible(false);
 			checkPressed1 = false;
 			checkPressed2 = true;
 			combo++;
-		}
-		if (checkPressed2 = true  && imageView2.getId() == "up") {
+		} else if (checkPressed2 == true && imageView2.getId() == "up") {
 			imageView2.setVisible(false);
 			checkPressed2 = false;
 			checkPressed3 = true;
 			combo++;
-		}
-		if (checkPressed3 == true && imageView3.getId() == "up") {
+		} else if (checkPressed3 == true && imageView3.getId() == "up") {
 			imageView3.setVisible(false);
 			checkPressed3 = false;
 			checkPressed4 = true;
 			combo++;
-		}
-		if (checkPressed4 == true  && imageView4.getId() == "up") {
+		} else if (checkPressed4 == true && imageView4.getId() == "up") {
 			imageView4.setVisible(false);
 			checkPressed4 = false;
 			checkPressed5 = true;
 			combo++;
-		}
-		if (checkPressed5 == true  && imageView5.getId() == "up") {
+		} else if (checkPressed5 == true && imageView5.getId() == "up") {
 			imageView5.setVisible(false);
 			checkPressed5 = false;
 			checkPressed6 = true;
 			combo++;
-		}
-		if (checkPressed6 == true  && imageView6.getId() == "up") {
+		} else if (checkPressed6 == true && imageView6.getId() == "up") {
 			imageView6.setVisible(false);
 			checkPressed6 = false;
 			checkPressed7 = true;
 			combo++;
-		}
-		if (checkPressed7 == true  && imageView7.getId() == "up") {
+		} else if (checkPressed7 == true && imageView7.getId() == "up") {
 			imageView7.setVisible(false);
 			checkPressed7 = false;
 			checkPressed8 = true;
 			combo++;
-		}
-		if (checkPressed8 == true  && imageView8.getId() == "up") {
+		} else if (checkPressed8 == true && imageView8.getId() == "up") {
 			imageView8.setVisible(false);
 			checkPressed8 = false;
 			checkPressed1 = true;
 			combo++;
 			randArrow();
+		} else {
+			System.out.println("wrong key");
+			combo = 0;
+			randArrow();
 		}
+
 	}
 
 	public void pressedDown() {
-		if (checkPressed1 == true  && imageView1.getId() == "down") {
+		if (checkPressed1 == true && imageView1.getId() == "down") {
 			imageView1.setVisible(false);
 			checkPressed1 = false;
 			checkPressed2 = true;
 			combo++;
-		}
-		if (checkPressed2 == true  && imageView2.getId() == "down") {
+		} else if (checkPressed2 == true && imageView2.getId() == "down") {
 			imageView2.setVisible(false);
 			checkPressed2 = false;
 			checkPressed3 = true;
 			combo++;
-		}
-		if (checkPressed3 == true && imageView3.getId() == "down") {
+		} else if (checkPressed3 == true && imageView3.getId() == "down") {
 			imageView3.setVisible(false);
 			checkPressed3 = false;
 			checkPressed4 = true;
 			combo++;
-		}
-		if (checkPressed4 == true  && imageView4.getId() == "down") {
+		} else if (checkPressed4 == true && imageView4.getId() == "down") {
 			imageView4.setVisible(false);
 			checkPressed4 = false;
 			checkPressed5 = true;
 			combo++;
-		}
-		if (checkPressed5 == true  && imageView5.getId() == "down") {
+		} else if (checkPressed5 == true && imageView5.getId() == "down") {
 			imageView5.setVisible(false);
 			checkPressed5 = false;
 			checkPressed6 = true;
 			combo++;
-		}
-		if (checkPressed6 == true  && imageView6.getId() == "down") {
+		} else if (checkPressed6 == true && imageView6.getId() == "down") {
 			imageView6.setVisible(false);
 			checkPressed6 = false;
 			checkPressed7 = true;
 			combo++;
-		}
-		if (checkPressed7 == true  && imageView7.getId() == "down") {
+		} else if (checkPressed7 == true && imageView7.getId() == "down") {
 			imageView7.setVisible(false);
 			checkPressed7 = false;
 			checkPressed8 = true;
 			combo++;
-		}
-		if (checkPressed8 == true && imageView8.getId() == "down") {
+		} else if (checkPressed8 == true && imageView8.getId() == "down") {
 			imageView8.setVisible(false);
 			checkPressed8 = false;
 			checkPressed1 = true;
 			combo++;
+			randArrow();
+		} else {
+			System.out.println("wrong key");
+			combo = 0;
 			randArrow();
 		}
 
 	}
 
 	public void pressedLeft() {
-		if (checkPressed1 == true&& imageView1.getId() == "left") {
+		if (checkPressed1 == true && imageView1.getId() == "left") {
 			imageView1.setVisible(false);
 			checkPressed1 = false;
 			checkPressed2 = true;
 			combo++;
-		}
-		if (checkPressed2 == true  && imageView2.getId() == "left") {
+		} else if (checkPressed2 == true && imageView2.getId() == "left") {
 			imageView2.setVisible(false);
 			checkPressed2 = false;
 			checkPressed3 = true;
 			combo++;
-		}
-		if (checkPressed3 == true  && imageView3.getId() == "left") {
+		} else if (checkPressed3 == true && imageView3.getId() == "left") {
 			imageView3.setVisible(false);
 			checkPressed3 = false;
 			checkPressed4 = true;
 			combo++;
-		}
-		if (checkPressed4 == true && imageView4.getId() == "left") {
+		} else if (checkPressed4 == true && imageView4.getId() == "left") {
 			imageView4.setVisible(false);
 			checkPressed4 = false;
 			checkPressed5 = true;
 			combo++;
-		}
-		if (checkPressed5 == true  && imageView5.getId() == "left") {
+		} else if (checkPressed5 == true && imageView5.getId() == "left") {
 			imageView5.setVisible(false);
 			checkPressed5 = false;
 			checkPressed6 = true;
 			combo++;
-		}
-
-		if (checkPressed6 == true  && imageView6.getId() == "left") {
+		} else if (checkPressed6 == true && imageView6.getId() == "left") {
 			imageView6.setVisible(false);
 			checkPressed6 = false;
 			checkPressed7 = true;
 			combo++;
-		}
-		if (checkPressed7 == true && imageView7.getId() == "left") {
+		} else if (checkPressed7 == true && imageView7.getId() == "left") {
 			imageView7.setVisible(false);
 			checkPressed7 = false;
 			checkPressed8 = true;
 			combo++;
-		}
-		if (checkPressed8 == true  && imageView8.getId() == "left") {
+		} else if (checkPressed8 == true && imageView8.getId() == "left") {
 			imageView8.setVisible(false);
 			checkPressed8 = false;
 			checkPressed1 = true;
 			combo++;
 			randArrow();
+		} else {
+			System.out.println("wrong key");
+			combo = 0;
+			randArrow();
 		}
 	}
 
 	public void pressedRight() {
-		if (checkPressed1 == true  && imageView1.getId() == "right") {
+		if (checkPressed1 == true && imageView1.getId() == "right") {
 			imageView1.setVisible(false);
 			checkPressed1 = false;
 			checkPressed2 = true;
 			combo++;
-		}
-		if (checkPressed2 == true && imageView2.getId() == "right") {
+		} else if (checkPressed2 == true && imageView2.getId() == "right") {
 			imageView2.setVisible(false);
 			checkPressed2 = false;
 			checkPressed3 = true;
 			combo++;
-		}
-		if (checkPressed3 == true && imageView3.getId() == "right") {
+		} else if (checkPressed3 == true && imageView3.getId() == "right") {
 			imageView3.setVisible(false);
 			checkPressed3 = false;
 			checkPressed4 = true;
 			combo++;
-		}
-		if (checkPressed4 == true&& imageView4.getId() == "right") {
+		} else if (checkPressed4 == true && imageView4.getId() == "right") {
 			imageView4.setVisible(false);
 			checkPressed4 = false;
 			checkPressed5 = true;
 			combo++;
-		}
-		if (checkPressed5 == true && imageView5.getId() == "right") {
+		} else if (checkPressed5 == true && imageView5.getId() == "right") {
 			imageView5.setVisible(false);
 			checkPressed5 = false;
 			checkPressed6 = true;
 			combo++;
-		}
-		if (checkPressed6 == true && imageView6.getId() == "right") {
+		} else if (checkPressed6 == true && imageView6.getId() == "right") {
 			imageView6.setVisible(false);
 			checkPressed6 = false;
 			checkPressed7 = true;
 			combo++;
-		}
-		if (checkPressed7 == true && imageView7.getId() == "right") {
+		} else if (checkPressed7 == true && imageView7.getId() == "right") {
 			imageView7.setVisible(false);
 			checkPressed7 = false;
 			checkPressed8 = true;
 			combo++;
-		}
-		if (checkPressed8 == true && imageView8.getId() == "right") {
+		} else if (checkPressed8 == true && imageView8.getId() == "right") {
 			imageView8.setVisible(false);
 			checkPressed8 = false;
 			checkPressed1 = true;
 			combo++;
+			randArrow();
+		} else {
+			System.out.println("wrong key");
+			combo = 0;
 			randArrow();
 		}
 	}
