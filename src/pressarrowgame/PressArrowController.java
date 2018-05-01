@@ -3,6 +3,7 @@ package pressarrowgame;
 import java.awt.event.KeyAdapter;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.text.Text;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -35,6 +36,10 @@ public class PressArrowController extends KeyAdapter {
 	@FXML
 	private ImageView imageView8;
 
+	@FXML
+	private Text txtCombo;
+	@FXML
+	private Text txtScores;
 	private Game game;
 
 	int rand;
@@ -66,6 +71,7 @@ public class PressArrowController extends KeyAdapter {
 	private String checkPressed = "";
 	private boolean stop = false;
 	private int combo = 0;
+	private int scores = 0;
 
 	// Image imageUp = new Image("/image1.png");
 	// Image imageDown = new Image("/image2.png");
@@ -85,10 +91,12 @@ public class PressArrowController extends KeyAdapter {
 	public void keyPressed(KeyEvent e) {
 		System.out.println("===========press==========");
 		System.out.println("combo = " + combo);
+		System.out.println("scores = " + scores);
 
 		if (e.getCode() == KeyCode.UP) {
 			checkPressed = "up";
 			pressedUp();
+
 		} else if (e.getCode() == KeyCode.DOWN) {
 			checkPressed = "down";
 			pressedDown();
@@ -99,6 +107,8 @@ public class PressArrowController extends KeyAdapter {
 			checkPressed = "right";
 			pressedRight();
 		}
+		txtCombo.setText(Integer.toString(combo));
+		txtScores.setText(Integer.toString(scores));
 		System.out.println(checkPressed);
 	}
 
@@ -108,45 +118,54 @@ public class PressArrowController extends KeyAdapter {
 			checkPressed1 = false;
 			checkPressed2 = true;
 			combo++;
+			scores += 10;
 		} else if (checkPressed2 == true && imageView2.getId() == "up") {
 			imageView2.setVisible(false);
 			checkPressed2 = false;
 			checkPressed3 = true;
 			combo++;
+			scores += 10;
 		} else if (checkPressed3 == true && imageView3.getId() == "up") {
 			imageView3.setVisible(false);
 			checkPressed3 = false;
 			checkPressed4 = true;
 			combo++;
+			scores += 10;
 		} else if (checkPressed4 == true && imageView4.getId() == "up") {
 			imageView4.setVisible(false);
 			checkPressed4 = false;
 			checkPressed5 = true;
 			combo++;
+			scores += 10;
 		} else if (checkPressed5 == true && imageView5.getId() == "up") {
 			imageView5.setVisible(false);
 			checkPressed5 = false;
 			checkPressed6 = true;
 			combo++;
+			scores += 10;
 		} else if (checkPressed6 == true && imageView6.getId() == "up") {
 			imageView6.setVisible(false);
 			checkPressed6 = false;
 			checkPressed7 = true;
 			combo++;
+			scores += 10;
 		} else if (checkPressed7 == true && imageView7.getId() == "up") {
 			imageView7.setVisible(false);
 			checkPressed7 = false;
 			checkPressed8 = true;
 			combo++;
+			scores += 10;
 		} else if (checkPressed8 == true && imageView8.getId() == "up") {
 			imageView8.setVisible(false);
 			checkPressed8 = false;
 			checkPressed1 = true;
 			combo++;
+			scores += 35;
 			randArrow();
 		} else {
 			System.out.println("wrong key");
 			combo = 0;
+			scores -= 25;
 			randArrow();
 		}
 
@@ -158,45 +177,54 @@ public class PressArrowController extends KeyAdapter {
 			checkPressed1 = false;
 			checkPressed2 = true;
 			combo++;
+			scores += 10;
 		} else if (checkPressed2 == true && imageView2.getId() == "down") {
 			imageView2.setVisible(false);
 			checkPressed2 = false;
 			checkPressed3 = true;
 			combo++;
+			scores += 10;
 		} else if (checkPressed3 == true && imageView3.getId() == "down") {
 			imageView3.setVisible(false);
 			checkPressed3 = false;
 			checkPressed4 = true;
 			combo++;
+			scores += 10;
 		} else if (checkPressed4 == true && imageView4.getId() == "down") {
 			imageView4.setVisible(false);
 			checkPressed4 = false;
 			checkPressed5 = true;
 			combo++;
+			scores += 10;
 		} else if (checkPressed5 == true && imageView5.getId() == "down") {
 			imageView5.setVisible(false);
 			checkPressed5 = false;
 			checkPressed6 = true;
 			combo++;
+			scores += 10;
 		} else if (checkPressed6 == true && imageView6.getId() == "down") {
 			imageView6.setVisible(false);
 			checkPressed6 = false;
 			checkPressed7 = true;
 			combo++;
+			scores += 10;
 		} else if (checkPressed7 == true && imageView7.getId() == "down") {
 			imageView7.setVisible(false);
 			checkPressed7 = false;
 			checkPressed8 = true;
 			combo++;
+			scores += 10;
 		} else if (checkPressed8 == true && imageView8.getId() == "down") {
 			imageView8.setVisible(false);
 			checkPressed8 = false;
 			checkPressed1 = true;
 			combo++;
+			scores += 35;
 			randArrow();
 		} else {
 			System.out.println("wrong key");
 			combo = 0;
+			scores -= 25;
 			randArrow();
 		}
 
@@ -208,45 +236,54 @@ public class PressArrowController extends KeyAdapter {
 			checkPressed1 = false;
 			checkPressed2 = true;
 			combo++;
+			scores += 10;
 		} else if (checkPressed2 == true && imageView2.getId() == "left") {
 			imageView2.setVisible(false);
 			checkPressed2 = false;
 			checkPressed3 = true;
 			combo++;
+			scores += 10;
 		} else if (checkPressed3 == true && imageView3.getId() == "left") {
 			imageView3.setVisible(false);
 			checkPressed3 = false;
 			checkPressed4 = true;
 			combo++;
+			scores += 10;
 		} else if (checkPressed4 == true && imageView4.getId() == "left") {
 			imageView4.setVisible(false);
 			checkPressed4 = false;
 			checkPressed5 = true;
 			combo++;
+			scores += 10;
 		} else if (checkPressed5 == true && imageView5.getId() == "left") {
 			imageView5.setVisible(false);
 			checkPressed5 = false;
 			checkPressed6 = true;
 			combo++;
+			scores += 10;
 		} else if (checkPressed6 == true && imageView6.getId() == "left") {
 			imageView6.setVisible(false);
 			checkPressed6 = false;
 			checkPressed7 = true;
 			combo++;
+			scores += 10;
 		} else if (checkPressed7 == true && imageView7.getId() == "left") {
 			imageView7.setVisible(false);
 			checkPressed7 = false;
 			checkPressed8 = true;
 			combo++;
+			scores += 10;
 		} else if (checkPressed8 == true && imageView8.getId() == "left") {
 			imageView8.setVisible(false);
 			checkPressed8 = false;
 			checkPressed1 = true;
 			combo++;
+			scores += 35;
 			randArrow();
 		} else {
 			System.out.println("wrong key");
 			combo = 0;
+			scores -= 25;
 			randArrow();
 		}
 	}
@@ -257,45 +294,54 @@ public class PressArrowController extends KeyAdapter {
 			checkPressed1 = false;
 			checkPressed2 = true;
 			combo++;
+			scores += 10;
 		} else if (checkPressed2 == true && imageView2.getId() == "right") {
 			imageView2.setVisible(false);
 			checkPressed2 = false;
 			checkPressed3 = true;
 			combo++;
+			scores += 10;
 		} else if (checkPressed3 == true && imageView3.getId() == "right") {
 			imageView3.setVisible(false);
 			checkPressed3 = false;
 			checkPressed4 = true;
 			combo++;
+			scores += 10;
 		} else if (checkPressed4 == true && imageView4.getId() == "right") {
 			imageView4.setVisible(false);
 			checkPressed4 = false;
 			checkPressed5 = true;
 			combo++;
+			scores += 10;
 		} else if (checkPressed5 == true && imageView5.getId() == "right") {
 			imageView5.setVisible(false);
 			checkPressed5 = false;
 			checkPressed6 = true;
 			combo++;
+			scores += 10;
 		} else if (checkPressed6 == true && imageView6.getId() == "right") {
 			imageView6.setVisible(false);
 			checkPressed6 = false;
 			checkPressed7 = true;
 			combo++;
+			scores += 10;
 		} else if (checkPressed7 == true && imageView7.getId() == "right") {
 			imageView7.setVisible(false);
 			checkPressed7 = false;
 			checkPressed8 = true;
 			combo++;
+			scores += 10;
 		} else if (checkPressed8 == true && imageView8.getId() == "right") {
 			imageView8.setVisible(false);
 			checkPressed8 = false;
 			checkPressed1 = true;
 			combo++;
+			scores += 35;
 			randArrow();
 		} else {
 			System.out.println("wrong key");
 			combo = 0;
+			scores -= 25;
 			randArrow();
 		}
 	}

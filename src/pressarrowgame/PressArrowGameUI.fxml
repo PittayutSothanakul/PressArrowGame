@@ -58,7 +58,7 @@
                      <children>
                         <HBox prefHeight="45.0" prefWidth="119.0">
                            <children>
-                              <Text fx:id="combo" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="101.51171875">
+                              <Text fx:id="txtCombo" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="101.51171875">
                                  <font>
                                     <Font size="26.0" />
                                  </font>
@@ -75,9 +75,9 @@
                      <children>
                         <HBox prefHeight="45.0" prefWidth="180.0">
                            <children>
-                              <Text fill="#c91111" strokeType="OUTSIDE" strokeWidth="0.0" text="-20" wrappingWidth="109.8212890625">
+                              <Text fill="#c91111" strokeType="OUTSIDE" strokeWidth="0.0" text="Please press start !!" wrappingWidth="109.8212890625">
                                  <font>
-                                    <Font size="38.0" />
+                                    <Font size="20.0" />
                                  </font>
                                  <HBox.margin>
                                     <Insets left="90.0" />
@@ -87,7 +87,7 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <Text fx:id="score" strokeType="OUTSIDE" strokeWidth="0.0" text="75">
+                  <Text fx:id="txtScores" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                      <font>
                         <Font size="26.0" />
                      </font>
