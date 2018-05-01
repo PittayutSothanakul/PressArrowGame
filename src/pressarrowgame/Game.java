@@ -6,6 +6,7 @@ public class Game extends AbstractGame {
 
 	private int time = 30;
 	private int scores;
+	private int combo;
 
 
 	public Game() {
