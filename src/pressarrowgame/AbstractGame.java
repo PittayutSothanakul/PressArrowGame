@@ -33,9 +33,9 @@ public abstract class AbstractGame {
 		delay();
 	}
 
-	private void delay() {
+	public void delay() {
 		try {
-			Thread.sleep(700);
+			Thread.sleep(50);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
