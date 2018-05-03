@@ -14,7 +14,7 @@ import javafx.scene.image.ImageView;
 /**
  * 
  * @author Pittayut Sothanakul
- * @version 1-5-2018
+ * @version 3-5-2018
  *
  */
 public class PressArrowController extends KeyAdapter {
@@ -38,22 +38,13 @@ public class PressArrowController extends KeyAdapter {
 	private ImageView imageView8;
 
 	private ImageView[] imageView;
-	// private ImageView imageView[];
-	// ArrayList<ImageView> imageView = new ArrayList<ImageView>();
+
 	@FXML
 	private Text txtCombo;
 	@FXML
 	private Text txtScores;
 	private Game game;
 	private int[] rand = new int[8];
-	Image myImage1;
-	Image myImage2;
-	Image myImage3;
-	Image myImage4;
-	Image myImage5;
-	Image myImage6;
-	Image myImage7;
-	Image myImage8;
 	Image[] myImage = new Image[8];
 	private boolean checkPressed1 = true;
 	private boolean checkPressed2 = false;
@@ -75,7 +66,7 @@ public class PressArrowController extends KeyAdapter {
 	// Image imageLeft = new Image("/image3.png");
 	// Image imageRight = new Image("/image4.png");
 	public void handle(ActionEvent event) {
-		// start.setVisible(false);
+		start.setVisible(false);
 		imageView = new ImageView[8];
 		imageView[0] = imageView1;
 		imageView[1] = imageView2;
@@ -92,9 +83,7 @@ public class PressArrowController extends KeyAdapter {
 	}
 
 	public void keyPressed(KeyEvent e) {
-		System.out.println("===========press==========");
-		System.out.println("combo = " + combo);
-		System.out.println("scores = " + scores);
+
 		String keyPressed = "";
 		if (e.getCode() == KeyCode.UP) {
 			keyPressed = "up";
@@ -111,7 +100,10 @@ public class PressArrowController extends KeyAdapter {
 		}
 		txtCombo.setText(Integer.toString(combo));
 		txtScores.setText(Integer.toString(scores));
+		System.out.println("===========press==========");
 		System.out.println(keyPressed);
+		System.out.println("combo = " + combo);
+		System.out.println("scores = " + scores);
 	}
 
 	private void pressedUp() {
@@ -135,9 +127,7 @@ public class PressArrowController extends KeyAdapter {
 				scores -= 25;
 				randArrow();
 			}
-
 		}
-
 	}
 
 	public void pressedDown() {
@@ -161,9 +151,7 @@ public class PressArrowController extends KeyAdapter {
 				scores -= 25;
 				randArrow();
 			}
-
 		}
-
 	}
 
 	public void pressedLeft() {
@@ -187,9 +175,7 @@ public class PressArrowController extends KeyAdapter {
 				scores -= 25;
 				randArrow();
 			}
-
 		}
-
 	}
 
 	public void pressedRight() {
@@ -214,27 +200,17 @@ public class PressArrowController extends KeyAdapter {
 				scores -= 25;
 				randArrow();
 			}
-
 		}
-
 	}
 
 	public void randArrow() {
-		int rand1 = (int) (Math.random() * 4 + 1);
-
 		for (int i = 0; i < rand.length; i++) {
 			rand[i] = (int) (Math.random() * 4 + 1);
 			myImage[i] = new Image("images/image" + rand[i] + ".png");
 			imageView[i].setVisible(true);
 			imageView[i].setImage(myImage[i]);
-
 		}
 		setArrow();
-		for (int i = 0; i < imageView.length; i++) {
-			System.out.println(rand[i]);
-			System.out.println(imageView[i].getId());
-			System.out.println(checkPressed[i]);
-		}
 		setCheckPressed();
 	}
 
