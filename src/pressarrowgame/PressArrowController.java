@@ -75,7 +75,7 @@ public class PressArrowController extends KeyAdapter {
 	// Image imageLeft = new Image("/image3.png");
 	// Image imageRight = new Image("/image4.png");
 	public void handle(ActionEvent event) {
-		start.setVisible(false);
+		// start.setVisible(false);
 		imageView = new ImageView[8];
 		imageView[0] = imageView1;
 		imageView[1] = imageView2;
@@ -115,319 +115,108 @@ public class PressArrowController extends KeyAdapter {
 	}
 
 	private void pressedUp() {
-
 		for (int i = 0; i < imageView.length; i++) {
-			if (i == imageView.length && imageView[i].getId() == "up") {
+			if (i == imageView.length - 1 && imageView[i].getId() == "up") {
 				combo++;
 				scores += 35;
 				randArrow();
 			} else if (checkPressed[i] == true && imageView[i].getId() == "up") {
 				imageView[i].setVisible(false);
 				checkPressed[i] = false;
-				checkPressed[i + 1] = true;
+				if (i < imageView.length - 1) {
+					checkPressed[i + 1] = true;
+				}
 				combo++;
 				scores += 10;
 				break;
+			} else if (checkPressed[i] == true && imageView[i].getId() != "up") {
+				System.out.println("wrong key");
+				combo = 0;
+				scores -= 25;
+				randArrow();
 			}
-			// else {
-			// System.out.println("wrong key");
-			// combo = 0;
-			// scores -= 25;
-			// randArrow();
-			// }
 
 		}
-		// if (checkPressed1 == true && imageView1.getId() == "up") {
-		// imageView1.setVisible(false);
-		// checkPressed1 = false;
-		// checkPressed2 = true;
-		// combo++;
-		// scores += 10;
-		// } else if (checkPressed2 == true && imageView2.getId() == "up") {
-		// imageView2.setVisible(false);
-		// checkPressed2 = false;
-		// checkPressed3 = true;
-		// combo++;
-		// scores += 10;
-		// } else if (checkPressed3 == true && imageView3.getId() == "up") {
-		// imageView3.setVisible(false);
-		// checkPressed3 = false;
-		// checkPressed4 = true;
-		// combo++;
-		// scores += 10;
-		// } else if (checkPressed4 == true && imageView4.getId() == "up") {
-		// imageView4.setVisible(false);
-		// checkPressed4 = false;
-		// checkPressed5 = true;
-		// combo++;
-		// scores += 10;
-		// } else if (checkPressed5 == true && imageView5.getId() == "up") {
-		// imageView5.setVisible(false);
-		// checkPressed5 = false;
-		// checkPressed6 = true;
-		// combo++;
-		// scores += 10;
-		// } else if (checkPressed6 == true && imageView6.getId() == "up") {
-		// imageView6.setVisible(false);
-		// checkPressed6 = false;
-		// checkPressed7 = true;
-		// combo++;
-		// scores += 10;
-		// } else if (checkPressed7 == true && imageView7.getId() == "up") {
-		// imageView7.setVisible(false);
-		// checkPressed7 = false;
-		// checkPressed8 = true;
-		// combo++;
-		// scores += 10;
-		// } else if (checkPressed8 == true && imageView8.getId() == "up") {
-		// imageView8.setVisible(false);
-		// checkPressed8 = false;
-		// checkPressed1 = true;
-		// combo++;
-		// scores += 35;
-		// randArrow();
-		// } else {
-		// System.out.println("wrong key");
-		// combo = 0;
-		// scores -= 25;
-		// randArrow();
-		// }
+
 	}
 
 	public void pressedDown() {
 		for (int i = 0; i < imageView.length; i++) {
-			if (i == imageView.length && imageView[i].getId() == "down") {
+			if (i == imageView.length - 1 && imageView[i].getId() == "down") {
 				combo++;
 				scores += 35;
 				randArrow();
 			} else if (checkPressed[i] == true && imageView[i].getId() == "down") {
 				imageView[i].setVisible(false);
 				checkPressed[i] = false;
+				if (i < imageView.length - 1) {
+					checkPressed[i + 1] = true;
+				}
 				combo++;
 				scores += 10;
 				break;
+			} else if (checkPressed[i] == true && imageView[i].getId() != "down") {
+				System.out.println("wrong key");
+				combo = 0;
+				scores -= 25;
+				randArrow();
 			}
-			// else {
-			// System.out.println("wrong key");
-			// combo = 0;
-			// scores -= 25;
-			// randArrow();
-			// }
 
 		}
-		// if (checkPressed1 == true && imageView1.getId() == "down") {
-		// imageView1.setVisible(false);
-		// checkPressed1 = false;
-		// checkPressed2 = true;
-		// combo++;
-		// scores += 10;
-		// } else if (checkPressed2 == true && imageView2.getId() == "down") {
-		// imageView2.setVisible(false);
-		// checkPressed2 = false;
-		// checkPressed3 = true;
-		// combo++;
-		// scores += 10;
-		// } else if (checkPressed3 == true && imageView3.getId() == "down") {
-		// imageView3.setVisible(false);
-		// checkPressed3 = false;
-		// checkPressed4 = true;
-		// combo++;
-		// scores += 10;
-		// } else if (checkPressed4 == true && imageView4.getId() == "down") {
-		// imageView4.setVisible(false);
-		// checkPressed4 = false;
-		// checkPressed5 = true;
-		// combo++;
-		// scores += 10;
-		// } else if (checkPressed5 == true && imageView5.getId() == "down") {
-		// imageView5.setVisible(false);
-		// checkPressed5 = false;
-		// checkPressed6 = true;
-		// combo++;
-		// scores += 10;
-		// } else if (checkPressed6 == true && imageView6.getId() == "down") {
-		// imageView6.setVisible(false);
-		// checkPressed6 = false;
-		// checkPressed7 = true;
-		// combo++;
-		// scores += 10;
-		// } else if (checkPressed7 == true && imageView7.getId() == "down") {
-		// imageView7.setVisible(false);
-		// checkPressed7 = false;
-		// checkPressed8 = true;
-		// combo++;
-		// scores += 10;
-		// } else if (checkPressed8 == true && imageView8.getId() == "down") {
-		// imageView8.setVisible(false);
-		// checkPressed8 = false;
-		// checkPressed1 = true;
-		// combo++;
-		// scores += 35;
-		// randArrow();
-		// } else {
-		// System.out.println("wrong key");
-		// combo = 0;
-		// scores -= 25;
-		// randArrow();
-		// }
+
 	}
 
 	public void pressedLeft() {
 		for (int i = 0; i < imageView.length; i++) {
-			if (i == imageView.length && imageView[i].getId() == "left") {
+			if (i == imageView.length - 1 && imageView[i].getId() == "left") {
 				combo++;
 				scores += 35;
 				randArrow();
 			} else if (checkPressed[i] == true && imageView[i].getId() == "left") {
 				imageView[i].setVisible(false);
 				checkPressed[i] = false;
-				checkPressed[i + 1] = true;
+				if (i < imageView.length - 1) {
+					checkPressed[i + 1] = true;
+				}
 				combo++;
 				scores += 10;
 				break;
+			} else if (checkPressed[i] == true && imageView[i].getId() != "left") {
+				System.out.println("wrong key");
+				combo = 0;
+				scores -= 25;
+				randArrow();
 			}
-			// else {
-			// System.out.println("wrong key");
-			// combo = 0;
-			// scores -= 25;
-			// randArrow();
-			// }
 
 		}
-		// if (checkPressed1 == true && imageView1.getId() == "left") {
-		// imageView1.setVisible(false);
-		// checkPressed1 = false;
-		// checkPressed2 = true;
-		// combo++;
-		// scores += 10;
-		// } else if (checkPressed2 == true && imageView2.getId() == "left") {
-		// imageView2.setVisible(false);
-		// checkPressed2 = false;
-		// checkPressed3 = true;
-		// combo++;
-		// scores += 10;
-		// } else if (checkPressed3 == true && imageView3.getId() == "left") {
-		// imageView3.setVisible(false);
-		// checkPressed3 = false;
-		// checkPressed4 = true;
-		// combo++;
-		// scores += 10;
-		// } else if (checkPressed4 == true && imageView4.getId() == "left") {
-		// imageView4.setVisible(false);
-		// checkPressed4 = false;
-		// checkPressed5 = true;
-		// combo++;
-		// scores += 10;
-		// } else if (checkPressed5 == true && imageView5.getId() == "left") {
-		// imageView5.setVisible(false);
-		// checkPressed5 = false;
-		// checkPressed6 = true;
-		// combo++;
-		// scores += 10;
-		// } else if (checkPressed6 == true && imageView6.getId() == "left") {
-		// imageView6.setVisible(false);
-		// checkPressed6 = false;
-		// checkPressed7 = true;
-		// combo++;
-		// scores += 10;
-		// } else if (checkPressed7 == true && imageView7.getId() == "left") {
-		// imageView7.setVisible(false);
-		// checkPressed7 = false;
-		// checkPressed8 = true;
-		// combo++;
-		// scores += 10;
-		// } else if (checkPressed8 == true && imageView8.getId() == "left") {
-		// imageView8.setVisible(false);
-		// checkPressed8 = false;
-		// checkPressed1 = true;
-		// combo++;
-		// scores += 35;
-		// randArrow();
-		// } else {
-		// System.out.println("wrong key");
-		// combo = 0;
-		// scores -= 25;
-		// randArrow();
-		// }
+
 	}
 
 	public void pressedRight() {
 		for (int i = 0; i < imageView.length; i++) {
-			if (i == imageView.length && imageView[i].getId() == "right") {
+			if (i == imageView.length - 1 && imageView[i].getId() == "right") {
 				combo++;
 				scores += 35;
 				randArrow();
 			} else if (checkPressed[i] == true && imageView[i].getId() == "right") {
 				imageView[i].setVisible(false);
 				checkPressed[i] = false;
-				checkPressed[i + 1] = true;
+				if (i < imageView.length - 1) {
+					checkPressed[i + 1] = true;
+				}
+
 				combo++;
 				scores += 10;
 				break;
+			} else if (checkPressed[i] == true && imageView[i].getId() != "right") {
+				System.out.println("wrong key");
+				combo = 0;
+				scores -= 25;
+				randArrow();
 			}
-			// else {
-			// System.out.println("wrong key");
-			// combo = 0;
-			// scores -= 25;
-			// randArrow();
-			// }
 
 		}
-		// if (checkPressed1 == true && imageView1.getId() == "right") {
-		// imageView1.setVisible(false);
-		// checkPressed1 = false;
-		// checkPressed2 = true;
-		// combo++;
-		// scores += 10;
-		// } else if (checkPressed2 == true && imageView2.getId() == "right") {
-		// imageView2.setVisible(false);
-		// checkPressed2 = false;
-		// checkPressed3 = true;
-		// combo++;
-		// scores += 10;
-		// } else if (checkPressed3 == true && imageView3.getId() == "right") {
-		// imageView3.setVisible(false);
-		// checkPressed3 = false;
-		// checkPressed4 = true;
-		// combo++;
-		// scores += 10;
-		// } else if (checkPressed4 == true && imageView4.getId() == "right") {
-		// imageView4.setVisible(false);
-		// checkPressed4 = false;
-		// checkPressed5 = true;
-		// combo++;
-		// scores += 10;
-		// } else if (checkPressed5 == true && imageView5.getId() == "right") {
-		// imageView5.setVisible(false);
-		// checkPressed5 = false;
-		// checkPressed6 = true;
-		// combo++;
-		// scores += 10;
-		// } else if (checkPressed6 == true && imageView6.getId() == "right") {
-		// imageView6.setVisible(false);
-		// checkPressed6 = false;
-		// checkPressed7 = true;
-		// combo++;
-		// scores += 10;
-		// } else if (checkPressed7 == true && imageView7.getId() == "right") {
-		// imageView7.setVisible(false);
-		// checkPressed7 = false;
-		// checkPressed8 = true;
-		// combo++;
-		// scores += 10;
-		// } else if (checkPressed8 == true && imageView8.getId() == "right") {
-		// imageView8.setVisible(false);
-		// checkPressed8 = false;
-		// checkPressed1 = true;
-		// combo++;
-		// scores += 35;
-		// randArrow();
-		// } else {
-		// System.out.println("wrong key");
-		// combo = 0;
-		// scores -= 25;
-		// randArrow();
-		// }
+
 	}
 
 	public void randArrow() {
@@ -440,22 +229,13 @@ public class PressArrowController extends KeyAdapter {
 			imageView[i].setImage(myImage[i]);
 
 		}
-
-		checkPressed1 = true;
-		checkPressed2 = false;
-		checkPressed3 = false;
-		checkPressed4 = false;
-		checkPressed5 = false;
-		checkPressed6 = false;
-		checkPressed7 = false;
-		checkPressed8 = false;
-
 		setArrow();
 		for (int i = 0; i < imageView.length; i++) {
 			System.out.println(rand[i]);
 			System.out.println(imageView[i].getId());
 			System.out.println(checkPressed[i]);
 		}
+		setCheckPressed();
 	}
 
 	public void setArrow() {
@@ -469,8 +249,19 @@ public class PressArrowController extends KeyAdapter {
 			} else if (rand[i] == 4) {
 				imageView[i].setId("right");
 			}
-
 		}
+
+	}
+
+	public void setCheckPressed() {
+		checkPressed[0] = true;
+		checkPressed[1] = false;
+		checkPressed[2] = false;
+		checkPressed[3] = false;
+		checkPressed[4] = false;
+		checkPressed[5] = false;
+		checkPressed[6] = false;
+		checkPressed[7] = false;
 
 	}
 
