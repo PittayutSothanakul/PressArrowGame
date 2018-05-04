@@ -2,11 +2,15 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -159,6 +163,32 @@
                   </ImageView>
                </children>
             </HBox>
+            <HBox prefHeight="56.0" prefWidth="600.0">
+               <children>
+                  <StackPane alignment="TOP_RIGHT" prefHeight="28.0" prefWidth="599.0">
+                     <children>
+                        <ProgressBar fx:id="progressBar" prefHeight="37.0" prefWidth="539.0" progress="0.0" />
+                        <Label prefHeight="17.0" prefWidth="145.0" text="         | Perfect |   Good   |" textAlignment="RIGHT">
+                           <StackPane.margin>
+                              <Insets top="17.0" />
+                           </StackPane.margin>
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </Label>
+                        <Slider fx:id="slider" disable="true" prefWidth="539.0">
+                           <StackPane.margin>
+                              <Insets top="5.0" />
+                           </StackPane.margin>
+                        </Slider>
+                     </children>
+                     <padding>
+                        <Insets left="30.0" right="30.0" />
+                     </padding>
+                  </StackPane>
+               </children>
+            </HBox>
+            <HBox prefHeight="41.0" prefWidth="600.0" />
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Button fx:id="start" mnemonicParsing="false" onAction="#handle" text="Start Game">
@@ -206,5 +236,6 @@
             </HBox>
          </children>
       </VBox>
+      <StackPane prefHeight="150.0" prefWidth="200.0" />
    </children>
 </AnchorPane>

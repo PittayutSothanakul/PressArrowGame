@@ -1,20 +1,22 @@
 package pressarrowgame;
 
 import java.awt.event.KeyAdapter;
-
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
  * 
  * @author Pittayut Sothanakul
- * @version 3-5-2018
+ * @version 4-5-2018
  *
  */
 public class PressArrowController extends KeyAdapter {
@@ -36,7 +38,16 @@ public class PressArrowController extends KeyAdapter {
 	private ImageView imageView7;
 	@FXML
 	private ImageView imageView8;
+	@FXML
+	private Slider slider;
+	@FXML
+	private ProgressBar progressBar;
+	@FXML
+	private ProgressBar progressBar2;
+	@FXML
+	private ProgressBar progressBar3;
 
+	Task runbar, runbar2, runbar3;
 	private ImageView[] imageView;
 
 	@FXML
@@ -54,19 +65,41 @@ public class PressArrowController extends KeyAdapter {
 	private boolean checkPressed6 = false;
 	private boolean checkPressed7 = false;
 	private boolean checkPressed8 = false;
+	private boolean checkRun;
+	private boolean checkThread = false;
+
+	private String dash = "";
 
 	private boolean checkPressed[] = { checkPressed1, checkPressed2, checkPressed3, checkPressed4, checkPressed5,
 			checkPressed6, checkPressed7, checkPressed8 };
 	private boolean stop = false;
 	private int combo = 0;
 	private int scores = 0;
+	private int countPerfect = 0;
+	private int countGood = 0;
+	private int countMiss = 0;
+	private int maxCombo = 0;
 
 	// Image imageUp = new Image("/image1.png");
 	// Image imageDown = new Image("/image2.png");
 	// Image imageLeft = new Image("/image3.png");
 	// Image imageRight = new Image("/image4.png");
 	public void handle(ActionEvent event) {
-		start.setVisible(false);
+		// start.setVisible(false);
+
+		// imageView1.requestFocus();
+		// imageView2.requestFocus();
+		// imageView3.requestFocus();
+		// imageView4.requestFocus();
+		// imageView5.requestFocus();
+		// imageView6.requestFocus();
+		// imageView7.requestFocus();
+		// imageView8.requestFocus();
+		slider.setShowTickMarks(true);
+		slider.setShowTickLabels(true);
+
+		slider.setMajorTickUnit(10f);
+		slider.setBlockIncrement(100f);
 		imageView = new ImageView[8];
 		imageView[0] = imageView1;
 		imageView[1] = imageView2;
@@ -77,15 +110,56 @@ public class PressArrowController extends KeyAdapter {
 		imageView[6] = imageView7;
 		imageView[7] = imageView8;
 		Game game = new Game();
+
 		// game.start();
+
 		randArrow();
 		setArrow();
 	}
 
-	public void keyPressed(KeyEvent e) {
+	public Task runBar() {
+		return new Task() {
+			@Override
+			protected Object call() throws Exception {
+				// int j = 0;
 
+				for (int i = 0; i < 100; i++) {
+					// j++;
+					if (i >= 0 && i < 70) {
+						// System.out.println(j);
+						progressBar.setStyle("-fx-accent: green;");
+						dash = "";
+					} else if (i >= 80 && i <= 90) {
+						// System.out.println(j);
+						progressBar.setStyle("-fx-accent: blue;");
+						dash = "perfect";
+					} else if (i > 90 && i < 99) {
+						// System.out.println(j);
+						progressBar.setStyle("-fx-accent: red;");
+						dash = "good";
+					} else if (i >= 99) {
+						System.out.println("It over Bonus");
+						progressBar.setStyle("-fx-accent: black;");
+						dash = "over";
+					}
+					Thread.sleep(22);
+
+					// updateMessage("20 milliseconds");
+					updateProgress(i + 1, 100);
+
+				}
+				checkThread = true;
+				return true;
+			}
+		};
+	}
+
+	public void keyPressed(KeyEvent e) {
 		String keyPressed = "";
-		if (e.getCode() == KeyCode.UP) {
+		if (e.getCode() == KeyCode.SHIFT) {
+			keyPressed = "space";
+			pressedSpace();
+		} else if (e.getCode() == KeyCode.UP) {
 			keyPressed = "up";
 			pressedUp();
 		} else if (e.getCode() == KeyCode.DOWN) {
@@ -108,10 +182,14 @@ public class PressArrowController extends KeyAdapter {
 
 	private void pressedUp() {
 		for (int i = 0; i < imageView.length; i++) {
-			if (i == imageView.length - 1 && imageView[i].getId() == "up") {
+			if (checkPressed[i] == true && i == imageView.length - 1 && imageView[i].getId() == "up") {
+				imageView[7].setVisible(false);
+				checkPressed[i] = false;
 				combo++;
-				scores += 35;
-				randArrow();
+				scores += 15;
+				checkRun = true;
+				System.out.println("Check run UP " + checkRun);
+				return;
 			} else if (checkPressed[i] == true && imageView[i].getId() == "up") {
 				imageView[i].setVisible(false);
 				checkPressed[i] = false;
@@ -124,7 +202,9 @@ public class PressArrowController extends KeyAdapter {
 			} else if (checkPressed[i] == true && imageView[i].getId() != "up") {
 				System.out.println("wrong key");
 				combo = 0;
+				countMiss++;
 				scores -= 25;
+				System.out.println("wrong up");
 				randArrow();
 			}
 		}
@@ -132,10 +212,14 @@ public class PressArrowController extends KeyAdapter {
 
 	public void pressedDown() {
 		for (int i = 0; i < imageView.length; i++) {
-			if (i == imageView.length - 1 && imageView[i].getId() == "down") {
+			if (checkPressed[i] == true && i == imageView.length - 1 && imageView[i].getId() == "down") {
+				imageView[7].setVisible(false);
+				checkPressed[i] = false;
 				combo++;
-				scores += 35;
-				randArrow();
+				scores += 15;
+				checkRun = true;
+				System.out.println("Check run DOWN " + checkRun);
+				return;
 			} else if (checkPressed[i] == true && imageView[i].getId() == "down") {
 				imageView[i].setVisible(false);
 				checkPressed[i] = false;
@@ -148,7 +232,9 @@ public class PressArrowController extends KeyAdapter {
 			} else if (checkPressed[i] == true && imageView[i].getId() != "down") {
 				System.out.println("wrong key");
 				combo = 0;
+				countMiss++;
 				scores -= 25;
+				System.out.println("wrong down");
 				randArrow();
 			}
 		}
@@ -156,10 +242,14 @@ public class PressArrowController extends KeyAdapter {
 
 	public void pressedLeft() {
 		for (int i = 0; i < imageView.length; i++) {
-			if (i == imageView.length - 1 && imageView[i].getId() == "left") {
+			if (checkPressed[i] == true && i == imageView.length - 1 && imageView[i].getId() == "left") {
+				imageView[7].setVisible(false);
+				checkPressed[i] = false;
 				combo++;
-				scores += 35;
-				randArrow();
+				scores += 15;
+				checkRun = true;
+				System.out.println("Check run LEFT " + checkRun);
+				return;
 			} else if (checkPressed[i] == true && imageView[i].getId() == "left") {
 				imageView[i].setVisible(false);
 				checkPressed[i] = false;
@@ -172,7 +262,9 @@ public class PressArrowController extends KeyAdapter {
 			} else if (checkPressed[i] == true && imageView[i].getId() != "left") {
 				System.out.println("wrong key");
 				combo = 0;
+				countMiss++;
 				scores -= 25;
+				System.out.println("wrong left");
 				randArrow();
 			}
 		}
@@ -180,30 +272,73 @@ public class PressArrowController extends KeyAdapter {
 
 	public void pressedRight() {
 		for (int i = 0; i < imageView.length; i++) {
-			if (i == imageView.length - 1 && imageView[i].getId() == "right") {
+			if (checkPressed[i] == true && i == imageView.length - 1 && imageView[i].getId() == "right") {
+				imageView[7].setVisible(false);
+				checkPressed[i] = false;
 				combo++;
-				scores += 35;
-				randArrow();
+				scores += 15;
+				checkRun = true;
+				System.out.println("Check run RIGHT " + checkRun);
+				return;
 			} else if (checkPressed[i] == true && imageView[i].getId() == "right") {
 				imageView[i].setVisible(false);
 				checkPressed[i] = false;
 				if (i < imageView.length - 1) {
 					checkPressed[i + 1] = true;
 				}
-
 				combo++;
 				scores += 10;
 				break;
 			} else if (checkPressed[i] == true && imageView[i].getId() != "right") {
 				System.out.println("wrong key");
 				combo = 0;
+				countMiss++;
 				scores -= 25;
+				System.out.println("wrong right");
 				randArrow();
 			}
 		}
 	}
 
+	public void pressedSpace() {
+		if (dash.equals("perfect") && checkRun == true) {
+			System.out.println("Get PERFECT");
+			countPerfect++;
+			combo++;
+			scores += 30;
+			randArrow();
+		} else if (dash.equals("good") && checkRun == true) {
+			System.out.println("Get GOOD");
+			countGood++;
+			combo++;
+			scores += 15;
+			randArrow();
+		} else if (dash.equals("over") && checkRun == true) {
+			System.out.println("Get over bonus");
+			randArrow();
+		} else {
+			System.out.println("WORNG SPACE");
+			System.out.println("Miss");
+			countMiss++;
+			combo = 0;
+			scores -= 20;
+			randArrow();
+		}
+	}
+
 	public void randArrow() {
+		maxCombo = Math.max(maxCombo, combo);
+		System.out.println("***********************");
+		System.out.println("combo = " + combo);
+		System.out.println("max combo = " + maxCombo);
+		System.out.println("perfect = " + countPerfect);
+		System.out.println("good = " + countGood);
+		System.out.println("miss = " + countMiss);
+		System.out.println("***********************");
+		if (checkThread == true) {
+			runbar.cancel();
+		}
+		checkRun = false;
 		for (int i = 0; i < rand.length; i++) {
 			rand[i] = (int) (Math.random() * 4 + 1);
 			myImage[i] = new Image("images/image" + rand[i] + ".png");
@@ -212,9 +347,18 @@ public class PressArrowController extends KeyAdapter {
 		}
 		setArrow();
 		setCheckPressed();
+
+		runbar = runBar();
+		progressBar.progressProperty().unbind();
+		progressBar.setProgress(0);
+		progressBar.progressProperty().bind(runbar.progressProperty());
+
+		new Thread(runbar).start();
+
 	}
 
 	public void setArrow() {
+
 		for (int i = 0; i < rand.length; i++) {
 			if (rand[i] == 1) {
 				imageView[i].setId("up");
