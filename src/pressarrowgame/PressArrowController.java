@@ -79,11 +79,17 @@ public class PressArrowController extends KeyAdapter {
 	private int countGood = 0;
 	private int countMiss = 0;
 	private int maxCombo = 0;
+	private Score score;
 
 	// Image imageUp = new Image("/image1.png");
 	// Image imageDown = new Image("/image2.png");
 	// Image imageLeft = new Image("/image3.png");
 	// Image imageRight = new Image("/image4.png");
+
+	public void setScore(Score score) {
+		this.score = score;
+	}
+
 	public void handle(ActionEvent event) {
 		// start.setVisible(false);
 
@@ -186,7 +192,9 @@ public class PressArrowController extends KeyAdapter {
 				imageView[7].setVisible(false);
 				checkPressed[i] = false;
 				combo++;
+				score.addCombo(1);
 				scores += 15;
+				score.addScores(15);
 				checkRun = true;
 				System.out.println("Check run UP " + checkRun);
 				return;
@@ -197,13 +205,18 @@ public class PressArrowController extends KeyAdapter {
 					checkPressed[i + 1] = true;
 				}
 				combo++;
+				score.addCombo(1);
 				scores += 10;
+				score.addScores(10);
 				break;
 			} else if (checkPressed[i] == true && imageView[i].getId() != "up") {
 				System.out.println("wrong key");
 				combo = 0;
+				score.setComboZero();
 				countMiss++;
+				score.addMiss(1);
 				scores -= 25;
+				score.addScores(-25);
 				System.out.println("wrong up");
 				randArrow();
 			}
@@ -216,7 +229,9 @@ public class PressArrowController extends KeyAdapter {
 				imageView[7].setVisible(false);
 				checkPressed[i] = false;
 				combo++;
+				score.addCombo(1);
 				scores += 15;
+				score.addScores(15);
 				checkRun = true;
 				System.out.println("Check run DOWN " + checkRun);
 				return;
@@ -227,13 +242,18 @@ public class PressArrowController extends KeyAdapter {
 					checkPressed[i + 1] = true;
 				}
 				combo++;
+				score.addCombo(1);
 				scores += 10;
+				score.addScores(10);
 				break;
 			} else if (checkPressed[i] == true && imageView[i].getId() != "down") {
 				System.out.println("wrong key");
 				combo = 0;
+				score.setComboZero();
 				countMiss++;
+				score.addMiss(1);
 				scores -= 25;
+				score.addScores(-25);
 				System.out.println("wrong down");
 				randArrow();
 			}
@@ -246,7 +266,9 @@ public class PressArrowController extends KeyAdapter {
 				imageView[7].setVisible(false);
 				checkPressed[i] = false;
 				combo++;
+				score.addCombo(1);
 				scores += 15;
+				score.addScores(15);
 				checkRun = true;
 				System.out.println("Check run LEFT " + checkRun);
 				return;
@@ -257,13 +279,19 @@ public class PressArrowController extends KeyAdapter {
 					checkPressed[i + 1] = true;
 				}
 				combo++;
+				System.out.println(score);
+				score.addCombo(1);
 				scores += 10;
+				score.addScores(10);
 				break;
 			} else if (checkPressed[i] == true && imageView[i].getId() != "left") {
 				System.out.println("wrong key");
 				combo = 0;
+				score.setComboZero();
 				countMiss++;
+				score.addMiss(1);
 				scores -= 25;
+				score.addScores(-25);
 				System.out.println("wrong left");
 				randArrow();
 			}
@@ -276,7 +304,9 @@ public class PressArrowController extends KeyAdapter {
 				imageView[7].setVisible(false);
 				checkPressed[i] = false;
 				combo++;
+				score.addCombo(1);
 				scores += 15;
+				score.addScores(15);
 				checkRun = true;
 				System.out.println("Check run RIGHT " + checkRun);
 				return;
@@ -287,13 +317,18 @@ public class PressArrowController extends KeyAdapter {
 					checkPressed[i + 1] = true;
 				}
 				combo++;
+				score.addCombo(1);
 				scores += 10;
+				score.addScores(10);
 				break;
 			} else if (checkPressed[i] == true && imageView[i].getId() != "right") {
 				System.out.println("wrong key");
 				combo = 0;
+				score.setComboZero();
 				countMiss++;
+				score.addMiss(1);
 				scores -= 25;
+				score.addScores(-25);
 				System.out.println("wrong right");
 				randArrow();
 			}
@@ -304,14 +339,20 @@ public class PressArrowController extends KeyAdapter {
 		if (dash.equals("perfect") && checkRun == true) {
 			System.out.println("Get PERFECT");
 			countPerfect++;
+			score.addPerfect(1);
 			combo++;
+			score.addCombo(1);
 			scores += 30;
+			score.addScores(30);
 			randArrow();
 		} else if (dash.equals("good") && checkRun == true) {
 			System.out.println("Get GOOD");
 			countGood++;
+			score.addGood(1);
 			combo++;
+			score.addCombo(1);
 			scores += 15;
+			score.addScores(15);
 			randArrow();
 		} else if (dash.equals("over") && checkRun == true) {
 			System.out.println("Get over bonus");
@@ -320,14 +361,18 @@ public class PressArrowController extends KeyAdapter {
 			System.out.println("WORNG SPACE");
 			System.out.println("Miss");
 			countMiss++;
+			score.addMiss(1);
 			combo = 0;
+			score.setComboZero();
 			scores -= 20;
+			score.addScores(-20);
 			randArrow();
 		}
 	}
 
 	public void randArrow() {
 		maxCombo = Math.max(maxCombo, combo);
+		score.setMaxCombo(maxCombo);
 		System.out.println("***********************");
 		System.out.println("combo = " + combo);
 		System.out.println("max combo = " + maxCombo);
