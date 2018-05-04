@@ -22,6 +22,7 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.sizeToScene();
 			primaryStage.show();
+//			root.requestFocus();
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Exception creating scene: " + e.getMessage());
