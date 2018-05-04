@@ -3,14 +3,13 @@ package pressarrowgame;
 import java.awt.event.KeyAdapter;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -29,6 +28,8 @@ import javafx.scene.image.ImageView;
 public class PressArrowController extends KeyAdapter {
 	@FXML
 	private Button start;
+	@FXML
+	private Button giveup;
 	@FXML
 	private ImageView imageView1;
 	@FXML
@@ -58,7 +59,10 @@ public class PressArrowController extends KeyAdapter {
 	@FXML
 	private ProgressBar progressBar3;
 
-	Task runbar, runbar2, runbar3;
+	@FXML
+	private AnchorPane aPane;
+
+	Task runbar;
 	private ImageView[] imageView;
 
 	@FXML
@@ -68,6 +72,7 @@ public class PressArrowController extends KeyAdapter {
 	private Game game;
 	private int[] rand = new int[8];
 	Image[] myImage = new Image[8];
+
 	private boolean checkPressed1 = true;
 	private boolean checkPressed2 = false;
 	private boolean checkPressed3 = false;
@@ -78,12 +83,12 @@ public class PressArrowController extends KeyAdapter {
 	private boolean checkPressed8 = false;
 	private boolean checkRun;
 	private boolean checkThread = false;
-
+	private boolean stop = false;
 	private String dash = "";
 
 	private boolean checkPressed[] = { checkPressed1, checkPressed2, checkPressed3, checkPressed4, checkPressed5,
 			checkPressed6, checkPressed7, checkPressed8 };
-	private boolean stop = false;
+
 	private int combo = 0;
 	private int scores = 0;
 	private int countPerfect = 0;
@@ -111,7 +116,6 @@ public class PressArrowController extends KeyAdapter {
 		if (timeline != null) {
 			timeline.stop();
 		}
-
 		timeline = new Timeline();
 		timeline.setCycleCount(Timeline.INDEFINITE);
 
@@ -122,11 +126,10 @@ public class PressArrowController extends KeyAdapter {
 				timeSeconds--;
 				timeLabel.setText(timeSeconds.toString());
 				if (timeSeconds <= 0) {
+					stop = true;
 					timeline.stop();
 				}
-
 			}
-
 		});
 		timeline.getKeyFrames().add(frame);
 		timeline.playFromStart();
@@ -135,7 +138,7 @@ public class PressArrowController extends KeyAdapter {
 
 	public void handle(ActionEvent event) {
 		// start.setVisible(false);
-doTime();
+		doTime();
 		keyword.setText("Press the Arrow");
 		// imageView1.requestFocus();
 		// imageView2.requestFocus();
@@ -172,7 +175,6 @@ doTime();
 			@Override
 			protected Object call() throws Exception {
 				// int j = 0;
-
 				for (int i = 0; i < 100; i++) {
 					// j++;
 					if (i >= 0 && i < 70) {
@@ -193,10 +195,8 @@ doTime();
 						dash = "over";
 					}
 					Thread.sleep(22);
-
 					// updateMessage("20 milliseconds");
 					updateProgress(i + 1, 100);
-
 				}
 				checkThread = true;
 				return true;
@@ -206,6 +206,11 @@ doTime();
 
 	public void keyPressed(KeyEvent e) {
 		String keyPressed = "";
+		if (stop == true) {
+			keyword.setText("==ENDGAME==");
+			System.out.println("======ENDGAME======");
+			aPane.setDisable(true);
+		}
 		if (e.getCode() == KeyCode.SHIFT) {
 			keyPressed = "space";
 			pressedSpace();
