@@ -8,6 +8,7 @@ import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
@@ -38,6 +39,8 @@ public class PressArrowController extends KeyAdapter {
 	private ImageView imageView7;
 	@FXML
 	private ImageView imageView8;
+	@FXML
+	private Label keyword;
 	@FXML
 	private Slider slider;
 	@FXML
@@ -92,7 +95,7 @@ public class PressArrowController extends KeyAdapter {
 
 	public void handle(ActionEvent event) {
 		// start.setVisible(false);
-
+		keyword.setText("Press the Arrow");
 		// imageView1.requestFocus();
 		// imageView2.requestFocus();
 		// imageView3.requestFocus();
@@ -218,7 +221,11 @@ public class PressArrowController extends KeyAdapter {
 				scores -= 25;
 				score.addScores(-25);
 				System.out.println("wrong up");
+				keyword.setText("Miss!!!");
 				randArrow();
+			}
+			if (checkPressed[2] == true) {
+				keyword.setText("");
 			}
 		}
 	}
@@ -255,7 +262,11 @@ public class PressArrowController extends KeyAdapter {
 				scores -= 25;
 				score.addScores(-25);
 				System.out.println("wrong down");
+				keyword.setText("Miss!!!");
 				randArrow();
+			}
+			if (checkPressed[2] == true) {
+				keyword.setText("");
 			}
 		}
 	}
@@ -293,7 +304,11 @@ public class PressArrowController extends KeyAdapter {
 				scores -= 25;
 				score.addScores(-25);
 				System.out.println("wrong left");
+				keyword.setText("Miss!!!");
 				randArrow();
+			}
+			if (checkPressed[2] == true) {
+				keyword.setText("");
 			}
 		}
 	}
@@ -330,7 +345,11 @@ public class PressArrowController extends KeyAdapter {
 				scores -= 25;
 				score.addScores(-25);
 				System.out.println("wrong right");
+				keyword.setText("Miss!!!");
 				randArrow();
+			}
+			if (checkPressed[2] == true) {
+				keyword.setText("");
 			}
 		}
 	}
@@ -338,6 +357,7 @@ public class PressArrowController extends KeyAdapter {
 	public void pressedSpace() {
 		if (dash.equals("perfect") && checkRun == true) {
 			System.out.println("Get PERFECT");
+			keyword.setText("****PERFECT****");
 			countPerfect++;
 			score.addPerfect(1);
 			combo++;
@@ -347,6 +367,7 @@ public class PressArrowController extends KeyAdapter {
 			randArrow();
 		} else if (dash.equals("good") && checkRun == true) {
 			System.out.println("Get GOOD");
+			keyword.setText("**GooD**");
 			countGood++;
 			score.addGood(1);
 			combo++;
@@ -356,8 +377,10 @@ public class PressArrowController extends KeyAdapter {
 			randArrow();
 		} else if (dash.equals("over") && checkRun == true) {
 			System.out.println("Get over bonus");
+			keyword.setText("Time's up to bonus");
 			randArrow();
 		} else {
+			keyword.setText("Miss!!!");
 			System.out.println("WORNG SPACE");
 			System.out.println("Miss");
 			countMiss++;

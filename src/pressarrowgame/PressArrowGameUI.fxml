@@ -60,9 +60,9 @@
                <children>
                   <VBox prefHeight="100.0" prefWidth="176.0">
                      <children>
-                        <HBox prefHeight="45.0" prefWidth="119.0">
+                        <HBox prefHeight="45.0" prefWidth="241.0">
                            <children>
-                              <Text fx:id="txtCombo" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="101.51171875">
+                              <Text fx:id="txtCombo" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="73.51171875">
                                  <font>
                                     <Font size="26.0" />
                                  </font>
@@ -79,14 +79,14 @@
                      <children>
                         <HBox prefHeight="45.0" prefWidth="180.0">
                            <children>
-                              <Text fill="#c91111" strokeType="OUTSIDE" strokeWidth="0.0" text="Please press start !!" wrappingWidth="109.8212890625">
+                              <Label fx:id="keyword" prefHeight="24.0" prefWidth="173.0" text="Please Click Start" textFill="#fc0303">
                                  <font>
-                                    <Font size="20.0" />
+                                    <Font size="19.0" />
                                  </font>
-                                 <HBox.margin>
-                                    <Insets left="90.0" />
-                                 </HBox.margin>
-                              </Text>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </Label>
                            </children>
                         </HBox>
                      </children>
@@ -236,6 +236,5 @@
             </HBox>
          </children>
       </VBox>
-      <StackPane prefHeight="150.0" prefWidth="200.0" />
    </children>
 </AnchorPane>
