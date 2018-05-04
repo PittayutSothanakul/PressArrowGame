@@ -1,10 +1,6 @@
 package pressarrowgame;
 
 import java.awt.event.KeyAdapter;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
@@ -79,6 +75,10 @@ public class PressArrowController extends KeyAdapter {
 	private boolean stop = false;
 	private int combo = 0;
 	private int scores = 0;
+	private int countPerfect = 0;
+	private int countGood = 0;
+	private int countMiss = 0;
+	private int maxCombo = 0;
 
 	// Image imageUp = new Image("/image1.png");
 	// Image imageDown = new Image("/image2.png");
@@ -138,8 +138,9 @@ public class PressArrowController extends KeyAdapter {
 						progressBar.setStyle("-fx-accent: red;");
 						dash = "good";
 					} else if (i >= 99) {
-						
-
+						System.out.println("It over Bonus");
+						progressBar.setStyle("-fx-accent: black;");
+						dash = "over";
 					}
 					Thread.sleep(22);
 
@@ -156,7 +157,6 @@ public class PressArrowController extends KeyAdapter {
 	public void keyPressed(KeyEvent e) {
 		String keyPressed = "";
 		if (e.getCode() == KeyCode.SHIFT) {
-			System.out.println("@@@@@@@@@@@@@@@@@@@");
 			keyPressed = "space";
 			pressedSpace();
 		} else if (e.getCode() == KeyCode.UP) {
@@ -202,6 +202,7 @@ public class PressArrowController extends KeyAdapter {
 			} else if (checkPressed[i] == true && imageView[i].getId() != "up") {
 				System.out.println("wrong key");
 				combo = 0;
+				countMiss++;
 				scores -= 25;
 				System.out.println("wrong up");
 				randArrow();
@@ -231,6 +232,7 @@ public class PressArrowController extends KeyAdapter {
 			} else if (checkPressed[i] == true && imageView[i].getId() != "down") {
 				System.out.println("wrong key");
 				combo = 0;
+				countMiss++;
 				scores -= 25;
 				System.out.println("wrong down");
 				randArrow();
@@ -260,6 +262,7 @@ public class PressArrowController extends KeyAdapter {
 			} else if (checkPressed[i] == true && imageView[i].getId() != "left") {
 				System.out.println("wrong key");
 				combo = 0;
+				countMiss++;
 				scores -= 25;
 				System.out.println("wrong left");
 				randArrow();
@@ -289,6 +292,7 @@ public class PressArrowController extends KeyAdapter {
 			} else if (checkPressed[i] == true && imageView[i].getId() != "right") {
 				System.out.println("wrong key");
 				combo = 0;
+				countMiss++;
 				scores -= 25;
 				System.out.println("wrong right");
 				randArrow();
@@ -298,18 +302,24 @@ public class PressArrowController extends KeyAdapter {
 
 	public void pressedSpace() {
 		if (dash.equals("perfect") && checkRun == true) {
-			System.out.println("==================Get PERFECT");
+			System.out.println("Get PERFECT");
+			countPerfect++;
 			combo++;
 			scores += 30;
 			randArrow();
 		} else if (dash.equals("good") && checkRun == true) {
 			System.out.println("Get GOOD");
+			countGood++;
 			combo++;
 			scores += 15;
+			randArrow();
+		} else if (dash.equals("over") && checkRun == true) {
+			System.out.println("Get over bonus");
 			randArrow();
 		} else {
 			System.out.println("WORNG SPACE");
 			System.out.println("Miss");
+			countMiss++;
 			combo = 0;
 			scores -= 20;
 			randArrow();
@@ -317,10 +327,17 @@ public class PressArrowController extends KeyAdapter {
 	}
 
 	public void randArrow() {
+		maxCombo = Math.max(maxCombo, combo);
+		System.out.println("***********************");
+		System.out.println("combo = " + combo);
+		System.out.println("max combo = " + maxCombo);
+		System.out.println("perfect = " + countPerfect);
+		System.out.println("good = " + countGood);
+		System.out.println("miss = " + countMiss);
+		System.out.println("***********************");
 		if (checkThread == true) {
 			runbar.cancel();
 		}
-
 		checkRun = false;
 		for (int i = 0; i < rand.length; i++) {
 			rand[i] = (int) (Math.random() * 4 + 1);
@@ -335,13 +352,6 @@ public class PressArrowController extends KeyAdapter {
 		progressBar.progressProperty().unbind();
 		progressBar.setProgress(0);
 		progressBar.progressProperty().bind(runbar.progressProperty());
-		// runbar.messageProperty().addListener(new ChangeListener<String>() {
-		// @Override
-		// public void changed(ObservableValue<? extends String> observable,
-		// String oldValue, String newValue) {
-		// System.out.println(newValue);
-		// }
-		// });
 
 		new Thread(runbar).start();
 
