@@ -83,7 +83,7 @@ public class PressArrowController extends KeyAdapter {
 	private boolean checkPressed[] = { checkPressed1, checkPressed2, checkPressed3, checkPressed4, checkPressed5,
 			checkPressed6, checkPressed7, checkPressed8 };
 	private String dash = "";
-	
+
 	private int combo = 0;
 	private int scores = 0;
 	private int countPerfect = 0;
@@ -194,8 +194,7 @@ public class PressArrowController extends KeyAdapter {
 
 	public void keyPressed(KeyEvent e) {
 		String keyPressed = "";
-		maxCombo = Math.max(maxCombo+1, combo);
-		score.setMaxCombo(maxCombo);
+
 		if (e.getCode() == KeyCode.SHIFT) {
 			keyPressed = "space";
 			pressedSpace();
@@ -223,6 +222,8 @@ public class PressArrowController extends KeyAdapter {
 			System.out.println("======ENDGAME======");
 			aPane.setDisable(true);
 		}
+		maxCombo = Math.max(maxCombo, combo);
+		score.setMaxCombo(maxCombo);
 	}
 
 	private void pressedUp() {
@@ -242,6 +243,9 @@ public class PressArrowController extends KeyAdapter {
 				checkPressed[i] = false;
 				if (i < imageView.length - 1) {
 					checkPressed[i + 1] = true;
+				}
+				if (maxCombo == 0) {
+					maxCombo++;
 				}
 				combo++;
 				score.addCombo(1);
@@ -284,6 +288,9 @@ public class PressArrowController extends KeyAdapter {
 				if (i < imageView.length - 1) {
 					checkPressed[i + 1] = true;
 				}
+				if (maxCombo == 0) {
+					maxCombo++;
+				}
 				combo++;
 				score.addCombo(1);
 				scores += 10;
@@ -324,6 +331,9 @@ public class PressArrowController extends KeyAdapter {
 				checkPressed[i] = false;
 				if (i < imageView.length - 1) {
 					checkPressed[i + 1] = true;
+				}
+				if (maxCombo == 0) {
+					maxCombo++;
 				}
 				combo++;
 				System.out.println(score);
@@ -366,6 +376,9 @@ public class PressArrowController extends KeyAdapter {
 				checkPressed[i] = false;
 				if (i < imageView.length - 1) {
 					checkPressed[i + 1] = true;
+				}
+				if (maxCombo == 0) {
+					maxCombo++;
 				}
 				combo++;
 				score.addCombo(1);
@@ -456,11 +469,9 @@ public class PressArrowController extends KeyAdapter {
 		progressBar.progressProperty().bind(runbar.progressProperty());
 
 		new Thread(runbar).start();
-
 	}
 
 	public void setArrow() {
-
 		for (int i = 0; i < rand.length; i++) {
 			if (rand[i] == 1) {
 				imageView[i].setId("up");
@@ -472,7 +483,6 @@ public class PressArrowController extends KeyAdapter {
 				imageView[i].setId("right");
 			}
 		}
-
 	}
 
 	public void setCheckPressed() {
@@ -484,10 +494,9 @@ public class PressArrowController extends KeyAdapter {
 		checkPressed[5] = false;
 		checkPressed[6] = false;
 		checkPressed[7] = false;
-
 	}
 
 	public void handleGiveUp(ActionEvent event) {
-		randArrow();
+		aPane.setDisable(true);
 	}
 }
