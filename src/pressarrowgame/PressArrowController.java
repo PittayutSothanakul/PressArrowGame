@@ -4,8 +4,14 @@ import java.awt.event.KeyAdapter;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.util.Duration;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -41,6 +47,8 @@ public class PressArrowController extends KeyAdapter {
 	private ImageView imageView8;
 	@FXML
 	private Label keyword;
+	@FXML
+	private Label timeLabel;
 	@FXML
 	private Slider slider;
 	@FXML
@@ -84,6 +92,10 @@ public class PressArrowController extends KeyAdapter {
 	private int maxCombo = 0;
 	private Score score;
 
+	private static final Integer STARTTIME = 30;
+	private Timeline timeline;
+	private Integer timeSeconds = STARTTIME;
+
 	// Image imageUp = new Image("/image1.png");
 	// Image imageDown = new Image("/image2.png");
 	// Image imageLeft = new Image("/image3.png");
@@ -93,8 +105,37 @@ public class PressArrowController extends KeyAdapter {
 		this.score = score;
 	}
 
+	public void doTime() {
+		timeSeconds = STARTTIME;
+		timeLabel.setText(timeSeconds.toString());
+		if (timeline != null) {
+			timeline.stop();
+		}
+
+		timeline = new Timeline();
+		timeline.setCycleCount(Timeline.INDEFINITE);
+
+		KeyFrame frame = new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				timeSeconds--;
+				timeLabel.setText(timeSeconds.toString());
+				if (timeSeconds <= 0) {
+					timeline.stop();
+				}
+
+			}
+
+		});
+		timeline.getKeyFrames().add(frame);
+		timeline.playFromStart();
+
+	}
+
 	public void handle(ActionEvent event) {
 		// start.setVisible(false);
+doTime();
 		keyword.setText("Press the Arrow");
 		// imageView1.requestFocus();
 		// imageView2.requestFocus();

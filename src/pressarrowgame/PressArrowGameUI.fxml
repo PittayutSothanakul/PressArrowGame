@@ -29,14 +29,14 @@
                         <Font size="15.0" />
                      </font>
                   </Text>
-                  <Text fx:id="time" strokeType="OUTSIDE" strokeWidth="0.0" text="25">
+                  <Label fx:id="timeLabel" text="0">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
                      <HBox.margin>
                         <Insets top="20.0" />
                      </HBox.margin>
-                     <font>
-                        <Font size="28.0" />
-                     </font>
-                  </Text>
+                  </Label>
                </children>
             </HBox>
             <HBox prefHeight="28.0" prefWidth="600.0">
