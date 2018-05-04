@@ -58,21 +58,17 @@ public class PressArrowController extends KeyAdapter {
 	private ProgressBar progressBar2;
 	@FXML
 	private ProgressBar progressBar3;
-
 	@FXML
 	private AnchorPane aPane;
-
-	Task runbar;
-	private ImageView[] imageView;
-
 	@FXML
 	private Text txtCombo;
 	@FXML
 	private Text txtScores;
-	private Game game;
-	private int[] rand = new int[8];
-	Image[] myImage = new Image[8];
 
+	private int[] rand = new int[8];
+	private ImageView[] imageView;
+	Image[] myImage = new Image[8];
+	Task runbar;
 	private boolean checkPressed1 = true;
 	private boolean checkPressed2 = false;
 	private boolean checkPressed3 = false;
@@ -84,11 +80,10 @@ public class PressArrowController extends KeyAdapter {
 	private boolean checkRun;
 	private boolean checkThread = false;
 	private boolean stop = false;
-	private String dash = "";
-
 	private boolean checkPressed[] = { checkPressed1, checkPressed2, checkPressed3, checkPressed4, checkPressed5,
 			checkPressed6, checkPressed7, checkPressed8 };
-
+	private String dash = "";
+	
 	private int combo = 0;
 	private int scores = 0;
 	private int countPerfect = 0;
@@ -96,6 +91,7 @@ public class PressArrowController extends KeyAdapter {
 	private int countMiss = 0;
 	private int maxCombo = 0;
 	private Score score;
+	private Game game;
 
 	private static final Integer STARTTIME = 30;
 	private Timeline timeline;
@@ -150,7 +146,6 @@ public class PressArrowController extends KeyAdapter {
 		// imageView8.requestFocus();
 		slider.setShowTickMarks(true);
 		slider.setShowTickLabels(true);
-
 		slider.setMajorTickUnit(10f);
 		slider.setBlockIncrement(100f);
 		imageView = new ImageView[8];
@@ -163,9 +158,7 @@ public class PressArrowController extends KeyAdapter {
 		imageView[6] = imageView7;
 		imageView[7] = imageView8;
 		Game game = new Game();
-
 		// game.start();
-
 		randArrow();
 		setArrow();
 	}
@@ -174,19 +167,14 @@ public class PressArrowController extends KeyAdapter {
 		return new Task() {
 			@Override
 			protected Object call() throws Exception {
-				// int j = 0;
 				for (int i = 0; i < 100; i++) {
-					// j++;
 					if (i >= 0 && i < 70) {
-						// System.out.println(j);
 						progressBar.setStyle("-fx-accent: green;");
 						dash = "";
 					} else if (i >= 80 && i <= 90) {
-						// System.out.println(j);
 						progressBar.setStyle("-fx-accent: blue;");
 						dash = "perfect";
 					} else if (i > 90 && i < 99) {
-						// System.out.println(j);
 						progressBar.setStyle("-fx-accent: red;");
 						dash = "good";
 					} else if (i >= 99) {
@@ -206,11 +194,8 @@ public class PressArrowController extends KeyAdapter {
 
 	public void keyPressed(KeyEvent e) {
 		String keyPressed = "";
-		if (stop == true) {
-			keyword.setText("==ENDGAME==");
-			System.out.println("======ENDGAME======");
-			aPane.setDisable(true);
-		}
+		maxCombo = Math.max(maxCombo+1, combo);
+		score.setMaxCombo(maxCombo);
 		if (e.getCode() == KeyCode.SHIFT) {
 			keyPressed = "space";
 			pressedSpace();
@@ -233,6 +218,11 @@ public class PressArrowController extends KeyAdapter {
 		System.out.println(keyPressed);
 		System.out.println("combo = " + combo);
 		System.out.println("scores = " + scores);
+		if (stop == true) {
+			keyword.setText("==ENDGAME==");
+			System.out.println("======ENDGAME======");
+			aPane.setDisable(true);
+		}
 	}
 
 	private void pressedUp() {
@@ -440,8 +430,6 @@ public class PressArrowController extends KeyAdapter {
 	}
 
 	public void randArrow() {
-		maxCombo = Math.max(maxCombo, combo);
-		score.setMaxCombo(maxCombo);
 		System.out.println("***********************");
 		System.out.println("combo = " + combo);
 		System.out.println("max combo = " + maxCombo);
