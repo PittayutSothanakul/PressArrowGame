@@ -1,12 +1,13 @@
 package pressarrowgame;
 
 import java.awt.event.KeyAdapter;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -45,8 +46,12 @@ public class PressArrowController extends KeyAdapter {
 	private Slider slider;
 	@FXML
 	private ProgressBar progressBar;
+	@FXML
+	private ProgressBar progressBar2;
+	@FXML
+	private ProgressBar progressBar3;
 
-	Task runbar;
+	Task runbar, runbar2, runbar3;
 	private ImageView[] imageView;
 
 	@FXML
@@ -65,6 +70,9 @@ public class PressArrowController extends KeyAdapter {
 	private boolean checkPressed7 = false;
 	private boolean checkPressed8 = false;
 	private boolean checkRun;
+	private boolean checkThread = false;
+
+	private String dash = "";
 
 	private boolean checkPressed[] = { checkPressed1, checkPressed2, checkPressed3, checkPressed4, checkPressed5,
 			checkPressed6, checkPressed7, checkPressed8 };
@@ -87,7 +95,11 @@ public class PressArrowController extends KeyAdapter {
 		// imageView6.requestFocus();
 		// imageView7.requestFocus();
 		// imageView8.requestFocus();
+		slider.setShowTickMarks(true);
+		slider.setShowTickLabels(true);
 
+		slider.setMajorTickUnit(10f);
+		slider.setBlockIncrement(100f);
 		imageView = new ImageView[8];
 		imageView[0] = imageView1;
 		imageView[1] = imageView2;
@@ -98,7 +110,6 @@ public class PressArrowController extends KeyAdapter {
 		imageView[6] = imageView7;
 		imageView[7] = imageView8;
 		Game game = new Game();
-		// progressBar = new ProgressBar(0);
 
 		// game.start();
 
@@ -110,11 +121,33 @@ public class PressArrowController extends KeyAdapter {
 		return new Task() {
 			@Override
 			protected Object call() throws Exception {
+				// int j = 0;
+
 				for (int i = 0; i < 100; i++) {
-					Thread.sleep(20);
-					updateMessage("20 milliseconds");
+					// j++;
+					if (i >= 0 && i < 70) {
+						// System.out.println(j);
+						progressBar.setStyle("-fx-accent: green;");
+						dash = "";
+					} else if (i >= 80 && i <= 90) {
+						// System.out.println(j);
+						progressBar.setStyle("-fx-accent: blue;");
+						dash = "perfect";
+					} else if (i > 90 && i < 99) {
+						// System.out.println(j);
+						progressBar.setStyle("-fx-accent: red;");
+						dash = "good";
+					} else if (i >= 99) {
+						
+
+					}
+					Thread.sleep(22);
+
+					// updateMessage("20 milliseconds");
 					updateProgress(i + 1, 100);
+
 				}
+				checkThread = true;
 				return true;
 			}
 		};
@@ -264,23 +297,30 @@ public class PressArrowController extends KeyAdapter {
 	}
 
 	public void pressedSpace() {
-		// System.out.println("====================" + checkRun);
-		if (checkRun == true) {
-			// System.out.println("else = " + checkRun);
-			System.out.println("Get extra socre");
+		if (dash.equals("perfect") && checkRun == true) {
+			System.out.println("==================Get PERFECT");
 			combo++;
 			scores += 30;
 			randArrow();
+		} else if (dash.equals("good") && checkRun == true) {
+			System.out.println("Get GOOD");
+			combo++;
+			scores += 15;
+			randArrow();
 		} else {
-			// System.out.println("if =" + checkRun);
 			System.out.println("WORNG SPACE");
+			System.out.println("Miss");
 			combo = 0;
-			scores -= 25;
+			scores -= 20;
 			randArrow();
 		}
 	}
 
 	public void randArrow() {
+		if (checkThread == true) {
+			runbar.cancel();
+		}
+
 		checkRun = false;
 		for (int i = 0; i < rand.length; i++) {
 			rand[i] = (int) (Math.random() * 4 + 1);
@@ -288,22 +328,27 @@ public class PressArrowController extends KeyAdapter {
 			imageView[i].setVisible(true);
 			imageView[i].setImage(myImage[i]);
 		}
+		setArrow();
+		setCheckPressed();
+
 		runbar = runBar();
 		progressBar.progressProperty().unbind();
 		progressBar.setProgress(0);
 		progressBar.progressProperty().bind(runbar.progressProperty());
-		runbar.messageProperty().addListener(new ChangeListener<String>() {
-			@Override
-			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				System.out.println(newValue);
-			}
-		});
+		// runbar.messageProperty().addListener(new ChangeListener<String>() {
+		// @Override
+		// public void changed(ObservableValue<? extends String> observable,
+		// String oldValue, String newValue) {
+		// System.out.println(newValue);
+		// }
+		// });
+
 		new Thread(runbar).start();
-		setArrow();
-		setCheckPressed();
+
 	}
 
 	public void setArrow() {
+
 		for (int i = 0; i < rand.length; i++) {
 			if (rand[i] == 1) {
 				imageView[i].setId("up");
