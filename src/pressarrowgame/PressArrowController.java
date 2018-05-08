@@ -113,7 +113,6 @@ public class PressArrowController extends KeyAdapter {
 		imageView[5] = imageView6;
 		imageView[6] = imageView7;
 		imageView[7] = imageView8;
-
 	}
 
 	public void setScore(Score score) {
@@ -147,23 +146,15 @@ public class PressArrowController extends KeyAdapter {
 	}
 
 	public void handle(ActionEvent event) {
-		// start.setVisible(false);
-
+		start.setVisible(false);
+		Player player = Player.getInstace();
+		System.out.println("Hello " + player.getName());
 		doTime();
 		keyword.setText("Press the Arrow");
-
 		ScoreView scoreView = new ScoreView(score);
 		score.addObserver(scoreView);
 		scoreView.run();
-		
-		// imageView1.requestFocus();
-		// imageView2.requestFocus();
-		// imageView3.requestFocus();
-		// imageView4.requestFocus();
-		// imageView5.requestFocus();
-		// imageView6.requestFocus();
-		// imageView7.requestFocus();
-		// imageView8.requestFocus();
+
 		slider.setShowTickMarks(true);
 		slider.setShowTickLabels(true);
 		slider.setMajorTickUnit(10f);

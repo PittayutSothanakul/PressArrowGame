@@ -22,22 +22,29 @@ public class LoginController {
 	@FXML
 	private Label txtHint;
 
-	Player player = new Player();
+	Player player;
 	Scene scene1, scene2;
 	Stage thestage;
 
 	private boolean checkName = false;
+
+	// public static Player getPlayer() {
+	// return player;
+	// }
 
 	public void start(Stage primaryStage) {
 		thestage = primaryStage;
 	}
 
 	public void handleEnter(ActionEvent event) {
+		player = Player.getInstace();
 		String text = nameField.getText().trim();
 		if (!nameField.getText().isEmpty()) {
 			txtHint.setText("Hello " + text);
 			player.setName(text);
+
 			nameField.setStyle("-fx-text-box-border: blue;");
+			System.out.println(player.getName());
 			checkName = true;
 		} else {
 			nameField.setText("");
@@ -56,18 +63,13 @@ public class LoginController {
 				Scene chooseGameScene = new Scene(chooseGameRoot);
 				thestage.setScene(chooseGameScene);
 				thestage.setAlwaysOnTop(true);
-				
-				
 
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
 		} else {
-			nameField.setText("");
 			nameField.setStyle("-fx-text-box-border: red;");
-			txtHint.setText("Please input your name");
+			txtHint.setText("Please Clicked enter");
 		}
-
 	}
-
 }

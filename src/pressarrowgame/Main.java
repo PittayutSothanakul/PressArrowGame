@@ -32,25 +32,22 @@ public class Main extends Application {
 				Platform.exit();
 			}
 			FXMLLoader loader = new FXMLLoader(url);
-
 			Parent root = loader.load();
-
 			PressArrowController controller = loader.getController();
 			controller.setScore(score);
 			hardScene = new Scene(root);
 			primaryStage.setScene(hardScene);
 			primaryStage.sizeToScene();
 			primaryStage.show();
-
 			// root.requestFocus();
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Exception creating scene: " + e.getMessage());
 		}
-		
-		ScoreView scoreView = new ScoreView(score);
-		score.addObserver(scoreView);
-		scoreView.run();
+
+		// ScoreView scoreView = new ScoreView(score);
+		// score.addObserver(scoreView);
+		// scoreView.run();
 	}
 
 	public static void main(String[] args) {
