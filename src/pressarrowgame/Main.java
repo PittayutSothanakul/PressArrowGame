@@ -1,5 +1,6 @@
 package pressarrowgame;
 
+import java.io.IOException;
 import java.net.URL;
 
 import javafx.application.Application;
@@ -47,10 +48,21 @@ public class Main extends Application {
 			System.out.println("Exception creating scene: " + e.getMessage());
 		}
 		ScoreView scoreView = new ScoreView(score);
-
+		GameServer server = new GameServer(5001);
+		GameClient client;
 		score.addObserver(scoreView);
-
 		scoreView.run();
+//		try {
+//			server.listen();
+//			client = new GameClient("192.168.1.14",5001,score);
+//			
+//			score.addObserver(client);
+//			client.consoleDialog();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+		
+		
 	}
 
 	public static void main(String[] args) {
