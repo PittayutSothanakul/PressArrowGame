@@ -90,17 +90,31 @@ public class PressArrowController extends KeyAdapter {
 	private int countGood = 0;
 	private int countMiss = 0;
 	private int maxCombo = 0;
-	private Score score;
+	private Score score = new Score();
 	private Game game;
 
 	private static final Integer STARTTIME = 30;
 	private Timeline timeline;
 	private Integer timeSeconds = STARTTIME;
-
+	ScoreView scoreView;
 	// Image imageUp = new Image("/image1.png");
 	// Image imageDown = new Image("/image2.png");
 	// Image imageLeft = new Image("/image3.png");
 	// Image imageRight = new Image("/image4.png");
+
+	@FXML
+	public void initialize() {
+		imageView = new ImageView[8];
+		imageView[0] = imageView1;
+		imageView[1] = imageView2;
+		imageView[2] = imageView3;
+		imageView[3] = imageView4;
+		imageView[4] = imageView5;
+		imageView[5] = imageView6;
+		imageView[6] = imageView7;
+		imageView[7] = imageView8;
+
+	}
 
 	public void setScore(Score score) {
 		this.score = score;
@@ -134,8 +148,14 @@ public class PressArrowController extends KeyAdapter {
 
 	public void handle(ActionEvent event) {
 		// start.setVisible(false);
+
 		doTime();
 		keyword.setText("Press the Arrow");
+
+		ScoreView scoreView = new ScoreView(score);
+		score.addObserver(scoreView);
+		scoreView.run();
+		
 		// imageView1.requestFocus();
 		// imageView2.requestFocus();
 		// imageView3.requestFocus();
@@ -148,15 +168,6 @@ public class PressArrowController extends KeyAdapter {
 		slider.setShowTickLabels(true);
 		slider.setMajorTickUnit(10f);
 		slider.setBlockIncrement(100f);
-		imageView = new ImageView[8];
-		imageView[0] = imageView1;
-		imageView[1] = imageView2;
-		imageView[2] = imageView3;
-		imageView[3] = imageView4;
-		imageView[4] = imageView5;
-		imageView[5] = imageView6;
-		imageView[6] = imageView7;
-		imageView[7] = imageView8;
 		Game game = new Game();
 		// game.start();
 		randArrow();
@@ -450,19 +461,43 @@ public class PressArrowController extends KeyAdapter {
 		System.out.println("good = " + countGood);
 		System.out.println("miss = " + countMiss);
 		System.out.println("***********************");
+		try {
+			Thread.sleep(22);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		if (checkThread == true) {
 			runbar.cancel();
 		}
 		checkRun = false;
-		for (int i = 0; i < rand.length; i++) {
-			rand[i] = (int) (Math.random() * 4 + 1);
-			myImage[i] = new Image("images/image" + rand[i] + ".png");
-			imageView[i].setVisible(true);
-			imageView[i].setImage(myImage[i]);
+
+		if (timeSeconds >= 20 && timeSeconds <= 30) {
+			for (int i = 0; i < rand.length - 4; i++) {
+				rand[i] = (int) (Math.random() * 4 + 1);
+				myImage[i] = new Image("images/image" + rand[i] + ".png");
+				imageView[i].setVisible(true);
+				imageView[i].setImage(myImage[i]);
+
+			}
+		} else if (timeSeconds >= 10 && timeSeconds < 20) {
+			for (int i = 0; i < rand.length - 2; i++) {
+				rand[i] = (int) (Math.random() * 4 + 1);
+				myImage[i] = new Image("images/image" + rand[i] + ".png");
+				imageView[i].setVisible(true);
+				imageView[i].setImage(myImage[i]);
+
+			}
+		} else {
+			for (int i = 0; i < rand.length; i++) {
+				rand[i] = (int) (Math.random() * 4 + 1);
+				myImage[i] = new Image("images/image" + rand[i] + ".png");
+				imageView[i].setVisible(true);
+				imageView[i].setImage(myImage[i]);
+
+			}
 		}
 		setArrow();
 		setCheckPressed();
-
 		runbar = runBar();
 		progressBar.progressProperty().unbind();
 		progressBar.setProgress(0);
@@ -494,6 +529,7 @@ public class PressArrowController extends KeyAdapter {
 		checkPressed[5] = false;
 		checkPressed[6] = false;
 		checkPressed[7] = false;
+		checkRun = true;
 	}
 
 	public void handleGiveUp(ActionEvent event) {

@@ -160,6 +160,9 @@
                      <image>
                         <Image url="@../../../final-Project/src/arrowhitgame/image3.png" />
                      </image>
+                     <HBox.margin>
+                        <Insets right="80.0" />
+                     </HBox.margin>
                   </ImageView>
                </children>
             </HBox>

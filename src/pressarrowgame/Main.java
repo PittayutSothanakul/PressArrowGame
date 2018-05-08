@@ -16,8 +16,9 @@ import javafx.fxml.FXMLLoader;
  *
  */
 public class Main extends Application {
-	@Override
+	public Scene hardScene;
 
+	@Override
 	public void start(Stage primaryStage) {
 		Score score = new Score();
 		try {
@@ -33,11 +34,11 @@ public class Main extends Application {
 			FXMLLoader loader = new FXMLLoader(url);
 
 			Parent root = loader.load();
-			
+
 			PressArrowController controller = loader.getController();
 			controller.setScore(score);
-			Scene scene = new Scene(root);
-			primaryStage.setScene(scene);
+			hardScene = new Scene(root);
+			primaryStage.setScene(hardScene);
 			primaryStage.sizeToScene();
 			primaryStage.show();
 
@@ -46,10 +47,9 @@ public class Main extends Application {
 			e.printStackTrace();
 			System.out.println("Exception creating scene: " + e.getMessage());
 		}
+		
 		ScoreView scoreView = new ScoreView(score);
-
 		score.addObserver(scoreView);
-
 		scoreView.run();
 	}
 
