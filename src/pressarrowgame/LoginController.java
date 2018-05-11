@@ -23,6 +23,7 @@ public class LoginController {
 	private Label txtHint;
 
 	Player player;
+	Mode mode;
 	Scene scene1, scene2;
 	Stage thestage;
 
@@ -38,6 +39,8 @@ public class LoginController {
 
 	public void handleEnter(ActionEvent event) {
 		player = Player.getInstace();
+		mode = Mode.getInstace();
+
 		String text = nameField.getText().trim();
 		if (!nameField.getText().isEmpty()) {
 			txtHint.setText("Hello " + text);
@@ -54,9 +57,30 @@ public class LoginController {
 		}
 	}
 
+	// public void easyClicked(ActionEvent e) {
+	// if (!nameField.getText().isEmpty() && checkName == true) {
+	// txtHint.setText("Coming Soon....");
+	// } else {
+	// nameField.setStyle("-fx-text-box-border: red;");
+	// txtHint.setText("Please fill name and clicked enter");
+	// }
+	// }
 	public void easyClicked(ActionEvent e) {
 		if (!nameField.getText().isEmpty() && checkName == true) {
-			txtHint.setText("Coming Soon....");
+			try {
+				mode.setMode("Easy Mode");
+				thestage = (Stage) txtHint.getScene().getWindow();
+				PressArrowController easyController = new PressArrowController();
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PressArrowGameUI.fxml"));
+				fxmlLoader.setController(easyController);
+				Parent root = fxmlLoader.load();
+				Scene scene = new Scene(root);
+				thestage.setScene(scene);
+				// thestage.setAlwaysOnTop(true);
+
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
 		} else {
 			nameField.setStyle("-fx-text-box-border: red;");
 			txtHint.setText("Please fill name and clicked enter");
@@ -66,11 +90,14 @@ public class LoginController {
 	public void hardClicked(ActionEvent e) {
 		if (!nameField.getText().isEmpty() && checkName == true) {
 			try {
+				mode.setMode("Hard Mode");
 				thestage = (Stage) txtHint.getScene().getWindow();
-				FXMLLoader chooseGameLoader = new FXMLLoader(getClass().getResource("PressArrowGameUI.fxml"));
-				Parent chooseGameRoot = chooseGameLoader.load();
-				Scene chooseGameScene = new Scene(chooseGameRoot);
-				thestage.setScene(chooseGameScene);
+				HardController hardController = new HardController();
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PressArrowGameUI.fxml"));
+				fxmlLoader.setController(hardController);
+				Parent root = fxmlLoader.load();
+				Scene scene = new Scene(root);
+				thestage.setScene(scene);
 				// thestage.setAlwaysOnTop(true);
 
 			} catch (Exception e1) {

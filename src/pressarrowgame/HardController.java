@@ -27,7 +27,7 @@ import javafx.scene.image.ImageView;
  * @version 4-5-2018
  *
  */
-public class PressArrowController {
+public class HardController {
 	@FXML
 	private Button start;
 	@FXML
@@ -109,7 +109,7 @@ public class PressArrowController {
 
 	@FXML
 	public void initialize() {
-		mode.setText("Easy Mode");
+		mode.setText("Hard Mode");
 		imageView = new ImageView[8];
 		imageView[0] = imageView1;
 		imageView[1] = imageView2;
@@ -194,7 +194,7 @@ public class PressArrowController {
 						progressBar.setStyle("-fx-accent: black;");
 						dash = "over";
 					}
-					Thread.sleep(22);
+					Thread.sleep(32);
 					// updateMessage("20 milliseconds");
 					updateProgress(i + 1, 100);
 				}
@@ -471,21 +471,21 @@ public class PressArrowController {
 
 		if (timeSeconds >= 45 && timeSeconds <= 60) {
 			for (int i = 0; i < rand.length - 4; i++) {
-				rand[i] = (int) (Math.random() * 4 + 1);
+				rand[i] = (int) (Math.random() * 8 + 1);
 				myImage[i] = new Image("images/image" + rand[i] + ".png");
 				imageView[i].setVisible(true);
 				imageView[i].setImage(myImage[i]);
 			}
 		} else if (timeSeconds >= 20 && timeSeconds < 45) {
 			for (int i = 0; i < rand.length - 2; i++) {
-				rand[i] = (int) (Math.random() * 4 + 1);
+				rand[i] = (int) (Math.random() * 8 + 1);
 				myImage[i] = new Image("images/image" + rand[i] + ".png");
 				imageView[i].setVisible(true);
 				imageView[i].setImage(myImage[i]);
 			}
 		} else {
 			for (int i = 0; i < rand.length; i++) {
-				rand[i] = (int) (Math.random() * 4 + 1);
+				rand[i] = (int) (Math.random() * 8 + 1);
 				myImage[i] = new Image("images/image" + rand[i] + ".png");
 				imageView[i].setVisible(true);
 				imageView[i].setImage(myImage[i]);
@@ -503,13 +503,13 @@ public class PressArrowController {
 
 	public void setArrow() {
 		for (int i = 0; i < rand.length; i++) {
-			if (rand[i] == 1) {
+			if (rand[i] == 1 || rand[i] == 6) {
 				imageView[i].setId("up");
-			} else if (rand[i] == 2) {
+			} else if (rand[i] == 2 || rand[i] == 5) {
 				imageView[i].setId("down");
-			} else if (rand[i] == 3) {
+			} else if (rand[i] == 3 || rand[i] == 8) {
 				imageView[i].setId("left");
-			} else if (rand[i] == 4) {
+			} else if (rand[i] == 4 || rand[i] == 7) {
 				imageView[i].setId("right");
 			}
 		}
@@ -528,7 +528,6 @@ public class PressArrowController {
 	}
 
 	public void endGame() {
-		System.out.println("Aleeeeeeet");
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Time's up");
 		alert.setHeaderText(null);

@@ -18,6 +18,7 @@ public class ScoreView implements java.util.Observer {
 	/** the label that shows the counter value. */
 	private Label label;
 	Player player;
+	Mode mode;
 
 	public ScoreView(Score score) {
 		this.score = score;
@@ -37,7 +38,7 @@ public class ScoreView implements java.util.Observer {
 		label.setPrefHeight(200);
 		// TODO Make the text BIG. Use setFont to create a font.
 		// TODO Be careful to import the correct Font class (not java.awt.Font).
-		label.setFont(new Font("Arial", 20.0));
+		label.setFont(new Font("Arial", 17.0));
 		// TODO Set the text alignment to CENTER
 		label.setAlignment(Pos.CENTER);
 		// Add the label to the HBox. You can all more components, too.
@@ -57,11 +58,12 @@ public class ScoreView implements java.util.Observer {
 	}
 
 	public void displayCount() {
+		mode = Mode.getInstace();
 		player = Player.getInstace();
 		label.setText(String.format(
-				"Player : %s\nScores : %2d\nMax Combo : %2d\nCombo : %2d\nPerfect : %2d\nGood : %2d\nMiss : %2d ",
-				player.getName(), score.getScores(), score.getMaxCombo(), score.getCombo(), score.getPerfect(),
-				score.getGood(), score.getMiss()));
+				"%s\nPlayer : %s\nScores : %2d\nMax Combo : %2d\nCombo : %2d\nPerfect : %2d\nGood : %2d\nMiss : %2d ",
+				mode.getMode(), player.getName(), score.getScores(), score.getMaxCombo(), score.getCombo(),
+				score.getPerfect(), score.getGood(), score.getMiss()));
 	}
 
 	@Override
