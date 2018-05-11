@@ -17,6 +17,7 @@ public class ScoreView implements java.util.Observer {
 	private Score score;
 	/** the label that shows the counter value. */
 	private Label label;
+	Player player;
 
 	public ScoreView(Score score) {
 		this.score = score;
@@ -27,9 +28,7 @@ public class ScoreView implements java.util.Observer {
 		stage = new Stage();
 		// components and containers for our window
 		HBox root = new HBox();
-		// TODO Set some padding around the HBox
 		root.setPadding(new Insets(10));
-		// TODO Align components in center of the HBox
 		root.setAlignment(Pos.CENTER);
 		// The label that will show the counter value.
 		label = new Label("   ");
@@ -58,9 +57,11 @@ public class ScoreView implements java.util.Observer {
 	}
 
 	public void displayCount() {
+		player = Player.getInstace();
 		label.setText(String.format(
-				"Scores : %2d\nMax Combo : %2d\nCombo : %2d\nPerfect : %2d\nGood : %2d\nMiss : %2d ", score.getScores(),
-				score.getMaxCombo(), score.getCombo(), score.getPerfect(), score.getGood(), score.getMiss()));
+				"Player : %s\nScores : %2d\nMax Combo : %2d\nCombo : %2d\nPerfect : %2d\nGood : %2d\nMiss : %2d ",
+				player.getName(), score.getScores(), score.getMaxCombo(), score.getCombo(), score.getPerfect(),
+				score.getGood(), score.getMiss()));
 	}
 
 	@Override

@@ -1,10 +1,10 @@
 package pressarrowgame;
 
-import java.awt.event.KeyAdapter;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -12,6 +12,8 @@ import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -25,7 +27,7 @@ import javafx.scene.image.ImageView;
  * @version 4-5-2018
  *
  */
-public class PressArrowController extends KeyAdapter {
+public class PressArrowController {
 	@FXML
 	private Button start;
 	@FXML
@@ -82,6 +84,7 @@ public class PressArrowController extends KeyAdapter {
 	private boolean stop = false;
 	private boolean checkPressed[] = { checkPressed1, checkPressed2, checkPressed3, checkPressed4, checkPressed5,
 			checkPressed6, checkPressed7, checkPressed8 };
+	private boolean checkGameisRun = false;
 	private String dash = "";
 
 	private int combo = 0;
@@ -93,7 +96,7 @@ public class PressArrowController extends KeyAdapter {
 	private Score score = new Score();
 	private Game game;
 
-	private static final Integer STARTTIME = 30;
+	private static final Integer STARTTIME = 60;
 	private Timeline timeline;
 	private Integer timeSeconds = STARTTIME;
 	ScoreView scoreView;
@@ -113,6 +116,7 @@ public class PressArrowController extends KeyAdapter {
 		imageView[5] = imageView6;
 		imageView[6] = imageView7;
 		imageView[7] = imageView8;
+		System.out.println(checkGameisRun);
 	}
 
 	public void setScore(Score score) {
@@ -127,9 +131,7 @@ public class PressArrowController extends KeyAdapter {
 		}
 		timeline = new Timeline();
 		timeline.setCycleCount(Timeline.INDEFINITE);
-
 		KeyFrame frame = new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
-
 			@Override
 			public void handle(ActionEvent event) {
 				timeSeconds--;
@@ -137,6 +139,10 @@ public class PressArrowController extends KeyAdapter {
 				if (timeSeconds <= 0) {
 					stop = true;
 					timeline.stop();
+					aPane.setDisable(true);
+					endGame();
+					keyword.setText("==ENDGAME==");
+					System.out.println("======ENDGAME======");
 				}
 			}
 		});
@@ -146,6 +152,8 @@ public class PressArrowController extends KeyAdapter {
 	}
 
 	public void handle(ActionEvent event) {
+		checkGameisRun = true;
+		System.out.println("handle : " + checkGameisRun);
 		start.setVisible(false);
 		Player player = Player.getInstace();
 		System.out.println("Hello " + player.getName());
@@ -154,7 +162,6 @@ public class PressArrowController extends KeyAdapter {
 		ScoreView scoreView = new ScoreView(score);
 		score.addObserver(scoreView);
 		scoreView.run();
-
 		slider.setShowTickMarks(true);
 		slider.setShowTickLabels(true);
 		slider.setMajorTickUnit(10f);
@@ -196,34 +203,31 @@ public class PressArrowController extends KeyAdapter {
 
 	public void keyPressed(KeyEvent e) {
 		String keyPressed = "";
-
-		if (e.getCode() == KeyCode.SHIFT) {
-			keyPressed = "space";
-			pressedSpace();
-		} else if (e.getCode() == KeyCode.UP) {
-			keyPressed = "up";
-			pressedUp();
-		} else if (e.getCode() == KeyCode.DOWN) {
-			keyPressed = "down";
-			pressedDown();
-		} else if (e.getCode() == KeyCode.LEFT) {
-			keyPressed = "left";
-			pressedLeft();
-		} else if (e.getCode() == KeyCode.RIGHT) {
-			keyPressed = "right";
-			pressedRight();
+		if (checkGameisRun == true) {
+			if (e.getCode() == KeyCode.SHIFT) {
+				keyPressed = "space";
+				pressedSpace();
+			} else if (e.getCode() == KeyCode.UP) {
+				keyPressed = "up";
+				pressedUp();
+			} else if (e.getCode() == KeyCode.DOWN) {
+				keyPressed = "down";
+				pressedDown();
+			} else if (e.getCode() == KeyCode.LEFT) {
+				keyPressed = "left";
+				pressedLeft();
+			} else if (e.getCode() == KeyCode.RIGHT) {
+				keyPressed = "right";
+				pressedRight();
+			}
 		}
+
 		txtCombo.setText(Integer.toString(combo));
 		txtScores.setText(Integer.toString(scores));
 		System.out.println("===========press==========");
 		System.out.println(keyPressed);
 		System.out.println("combo = " + combo);
 		System.out.println("scores = " + scores);
-		if (stop == true) {
-			keyword.setText("==ENDGAME==");
-			System.out.println("======ENDGAME======");
-			aPane.setDisable(true);
-		}
 		maxCombo = Math.max(maxCombo, combo);
 		score.setMaxCombo(maxCombo);
 	}
@@ -462,21 +466,19 @@ public class PressArrowController extends KeyAdapter {
 		}
 		checkRun = false;
 
-		if (timeSeconds >= 20 && timeSeconds <= 30) {
+		if (timeSeconds >= 45 && timeSeconds <= 60) {
 			for (int i = 0; i < rand.length - 4; i++) {
 				rand[i] = (int) (Math.random() * 4 + 1);
 				myImage[i] = new Image("images/image" + rand[i] + ".png");
 				imageView[i].setVisible(true);
 				imageView[i].setImage(myImage[i]);
-
 			}
-		} else if (timeSeconds >= 10 && timeSeconds < 20) {
+		} else if (timeSeconds >= 20 && timeSeconds < 45) {
 			for (int i = 0; i < rand.length - 2; i++) {
 				rand[i] = (int) (Math.random() * 4 + 1);
 				myImage[i] = new Image("images/image" + rand[i] + ".png");
 				imageView[i].setVisible(true);
 				imageView[i].setImage(myImage[i]);
-
 			}
 		} else {
 			for (int i = 0; i < rand.length; i++) {
@@ -484,7 +486,6 @@ public class PressArrowController extends KeyAdapter {
 				myImage[i] = new Image("images/image" + rand[i] + ".png");
 				imageView[i].setVisible(true);
 				imageView[i].setImage(myImage[i]);
-
 			}
 		}
 		setArrow();
@@ -523,7 +524,24 @@ public class PressArrowController extends KeyAdapter {
 		checkRun = true;
 	}
 
+	public void endGame() {
+		System.out.println("Aleeeeeeet");
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Time's up");
+		alert.setHeaderText(null);
+		alert.setContentText("Plaese cilck ok");
+		// alert.showAndWait();
+		alert.show();
+		backToHome();
+
+	}
+
+	public void backToHome() {
+		ModeGame.HOME.changeMode((Stage) start.getScene().getWindow());
+	}
+
 	public void handleGiveUp(ActionEvent event) {
 		aPane.setDisable(true);
+		endGame();
 	}
 }

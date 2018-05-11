@@ -54,6 +54,15 @@ public class LoginController {
 		}
 	}
 
+	public void easyClicked(ActionEvent e) {
+		if (!nameField.getText().isEmpty() && checkName == true) {
+			txtHint.setText("Coming Soon....");
+		} else {
+			nameField.setStyle("-fx-text-box-border: red;");
+			txtHint.setText("Please fill name and clicked enter");
+		}
+	}
+
 	public void hardClicked(ActionEvent e) {
 		if (!nameField.getText().isEmpty() && checkName == true) {
 			try {
@@ -62,14 +71,14 @@ public class LoginController {
 				Parent chooseGameRoot = chooseGameLoader.load();
 				Scene chooseGameScene = new Scene(chooseGameRoot);
 				thestage.setScene(chooseGameScene);
-				thestage.setAlwaysOnTop(true);
+				// thestage.setAlwaysOnTop(true);
 
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
 		} else {
 			nameField.setStyle("-fx-text-box-border: red;");
-			txtHint.setText("Please Clicked enter");
+			txtHint.setText("Please fill name and clicked enter");
 		}
 	}
 }

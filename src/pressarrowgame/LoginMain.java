@@ -14,9 +14,6 @@ import javafx.fxml.FXMLLoader;
  */
 public class LoginMain extends Application {
 
-	Score score;
-	ScoreView scoreView;
-
 	public void start(Stage primaryStage) {
 		try {
 			Parent root = (Parent) FXMLLoader.load(getClass().getResource("LoginUI.fxml"));

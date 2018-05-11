@@ -17,6 +17,11 @@
 
 <AnchorPane fx:id="aPane" onKeyPressed="#keyPressed" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pressarrowgame.PressArrowController">
    <children>
+      <ImageView fitHeight="410.0" fitWidth="620.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../bin/images/background.jpg" />
+         </image>
+      </ImageView>
       <VBox layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
          <children>
             <HBox prefHeight="81.0" prefWidth="600.0">
@@ -75,20 +80,19 @@
                      </children>
                   </VBox>
                   <Pane prefHeight="77.0" prefWidth="0.0" />
-                  <VBox prefHeight="64.0" prefWidth="180.0">
+                  <VBox prefHeight="66.0" prefWidth="468.0">
                      <children>
-                        <HBox prefHeight="45.0" prefWidth="180.0">
-                           <children>
-                              <Label fx:id="keyword" prefHeight="24.0" prefWidth="173.0" text="Please Click Start" textFill="#fc0303">
-                                 <font>
-                                    <Font size="19.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
-                              </Label>
-                           </children>
-                        </HBox>
+                        <Label fx:id="keyword" alignment="CENTER" prefHeight="24.0" prefWidth="374.0" text="Please Click Start" textFill="#fc0303">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
                      </children>
                   </VBox>
                   <Text fx:id="txtScores" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
@@ -96,7 +100,7 @@
                         <Font size="26.0" />
                      </font>
                      <HBox.margin>
-                        <Insets left="127.0" top="10.0" />
+                        <Insets left="47.0" right="60.0" top="10.0" />
                      </HBox.margin>
                   </Text>
                </children>
@@ -202,7 +206,7 @@
                   <Button fx:id="giveup" mnemonicParsing="false" onAction="#handleGiveUp" text="Give UP" />
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="High Scores">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0">
                            <font>
                               <Font size="25.0" />
                            </font>
@@ -212,17 +216,17 @@
                         </Text>
                         <HBox prefHeight="24.0" prefWidth="144.0">
                            <children>
-                              <Text fx:id="player1" strokeType="OUTSIDE" strokeWidth="0.0" text="Player1">
+                              <Text fx:id="player1" strokeType="OUTSIDE" strokeWidth="0.0">
                                  <HBox.margin>
                                     <Insets right="25.0" />
                                  </HBox.margin>
                               </Text>
-                              <Text fx:id="scPlayer1" strokeType="OUTSIDE" strokeWidth="0.0" text="75" />
+                              <Text fx:id="scPlayer1" strokeType="OUTSIDE" strokeWidth="0.0" />
                            </children>
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Text fx:id="player2" strokeType="OUTSIDE" strokeWidth="0.0" text="Player2">
+                              <Text fx:id="player2" strokeType="OUTSIDE" strokeWidth="0.0">
                                  <HBox.margin>
                                     <Insets right="25.0" />
                                  </HBox.margin>
