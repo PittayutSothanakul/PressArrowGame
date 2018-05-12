@@ -107,9 +107,13 @@ public class PressArrowController {
 	// Image imageDown = new Image("/image2.png");
 	// Image imageLeft = new Image("/image3.png");
 	// Image imageRight = new Image("/image4.png");
+	Score Score = new Score();
 
 	@FXML
 	public void initialize() {
+		scoreView = new ScoreView(score);
+		// score.addObserver(scoreView);
+		scoreView.run();
 		timeline = new Timeline();
 		mode.setText("Easy Mode");
 		imageView = new ImageView[8];
@@ -156,6 +160,7 @@ public class PressArrowController {
 	}
 
 	public void handle(ActionEvent event) {
+		score.addObserver(scoreView);
 		checkGameisRun = true;
 		System.out.println("handle : " + checkGameisRun);
 		start.setVisible(false);
@@ -163,9 +168,11 @@ public class PressArrowController {
 		System.out.println("Hello " + player.getName());
 		doTime();
 		keyword.setText("Press the Arrow");
-		ScoreView scoreView = new ScoreView(score);
-		score.addObserver(scoreView);
-		scoreView.run();
+
+		// ScoreView scoreView = new ScoreView(score);
+		// score.addObserver(scoreView);
+		// scoreView.run();
+
 		slider.setShowTickMarks(true);
 		slider.setShowTickLabels(true);
 		slider.setMajorTickUnit(10f);
@@ -376,13 +383,13 @@ public class PressArrowController {
 
 	public void setArrow() {
 		for (int i = 0; i < rand.length; i++) {
-			if (rand[i] == 1) {
+			if (rand[i] == 1 ) {
 				imageView[i].setId("up");
-			} else if (rand[i] == 2) {
+			} else if (rand[i] == 2 ) {
 				imageView[i].setId("down");
-			} else if (rand[i] == 3) {
+			} else if (rand[i] == 3 ) {
 				imageView[i].setId("left");
-			} else if (rand[i] == 4) {
+			} else if (rand[i] == 4 ) {
 				imageView[i].setId("right");
 			}
 		}
@@ -423,7 +430,7 @@ public class PressArrowController {
 		alert.setTitle("You giveup");
 		alert.setHeaderText(null);
 		alert.setContentText("Plaese cilck ok");
-		alert.show();
 		backToHome();
+		alert.show();
 	}
 }
