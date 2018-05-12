@@ -5,9 +5,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class LoginController {
@@ -21,6 +24,8 @@ public class LoginController {
 	private Button hardMode;
 	@FXML
 	private Label txtHint;
+	@FXML
+	private CheckBox cbHint;
 
 	Player player;
 	Mode mode;
@@ -28,10 +33,6 @@ public class LoginController {
 	Stage thestage;
 
 	private boolean checkName = false;
-
-	// public static Player getPlayer() {
-	// return player;
-	// }
 
 	public void start(Stage primaryStage) {
 		thestage = primaryStage;
@@ -57,14 +58,6 @@ public class LoginController {
 		}
 	}
 
-	// public void easyClicked(ActionEvent e) {
-	// if (!nameField.getText().isEmpty() && checkName == true) {
-	// txtHint.setText("Coming Soon....");
-	// } else {
-	// nameField.setStyle("-fx-text-box-border: red;");
-	// txtHint.setText("Please fill name and clicked enter");
-	// }
-	// }
 	public void easyClicked(ActionEvent e) {
 		if (!nameField.getText().isEmpty() && checkName == true) {
 			try {
@@ -76,7 +69,9 @@ public class LoginController {
 				Parent root = fxmlLoader.load();
 				Scene scene = new Scene(root);
 				thestage.setScene(scene);
-				// thestage.setAlwaysOnTop(true);
+				if (cbHint.isSelected()) {
+					hintBox();
+				}
 
 			} catch (Exception e1) {
 				e1.printStackTrace();
@@ -98,6 +93,9 @@ public class LoginController {
 				Parent root = fxmlLoader.load();
 				Scene scene = new Scene(root);
 				thestage.setScene(scene);
+				if (cbHint.isSelected()) {
+					hintBoxHard();
+				}
 				// thestage.setAlwaysOnTop(true);
 
 			} catch (Exception e1) {
@@ -107,5 +105,23 @@ public class LoginController {
 			nameField.setStyle("-fx-text-box-border: red;");
 			txtHint.setText("Please fill name and clicked enter");
 		}
+	}
+
+	public void hintBox() {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Hint !!");
+		alert.setHeaderText(null);
+		alert.setContentText(
+				"Pressed keys following the Arrow and\nPressed Shift then gage is running to Perfect to get Extra Score");
+		alert.show();
+	}
+
+	public void hintBoxHard() {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Hint !!");
+		alert.setHeaderText(null);
+		alert.setContentText(
+				"Pressed keys following the Arrow and\nPressed Shift then gage is running to Perfect to get Extra Score\n====The RedArrow is reverse! direction keys====");
+		alert.show();
 	}
 }

@@ -218,7 +218,7 @@
                                     <Insets right="25.0" />
                                  </HBox.margin>
                               </Text>
-                              <Text fx:id="scPlayer1" strokeType="OUTSIDE" strokeWidth="0.0" text="Hint !! Press Shift then gage is running to Perfect">
+                              <Text fx:id="scPlayer1" strokeType="OUTSIDE" strokeWidth="0.0">
                                  <font>
                                     <Font size="9.0" />
                                  </font></Text>
@@ -234,7 +234,7 @@
                                     <Insets right="25.0" />
                                  </HBox.margin>
                               </Text>
-                              <Text fx:id="scPlayer2" strokeType="OUTSIDE" strokeWidth="0.0" text="to get Extra Score">
+                              <Text fx:id="scPlayer2" strokeType="OUTSIDE" strokeWidth="0.0">
                                  <font>
                                     <Font size="9.0" />
                                  </font></Text>
