@@ -115,7 +115,7 @@ public class HardController {
 		// score.addObserver(scoreView);
 		scoreView.run();
 		timeline = new Timeline();
-		mode.setText("Easy Mode");
+		mode.setText("Hard Mode");
 		imageView = new ImageView[8];
 		imageView[0] = imageView1;
 		imageView[1] = imageView2;
