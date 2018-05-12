@@ -195,7 +195,7 @@ public class HardController {
 						progressBar.setStyle("-fx-accent: black;");
 						dash = "over";
 					}
-					Thread.sleep(22);
+					Thread.sleep(32);
 					// updateMessage("20 milliseconds");
 					updateProgress(i + 1, 100);
 				}
