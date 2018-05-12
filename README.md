@@ -1,6 +1,5 @@
 # Pa5 PressArrowGame
-by  Pittayut Sithanakul 5910546678<hr>
-and Patiphan Srisook    5910546422
+by  Pittayut Sithanakul 5910546678 and Patiphan Srisook    5910546422
 
 ## How to play
 
