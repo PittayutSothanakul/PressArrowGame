@@ -15,8 +15,10 @@ public enum ModeGame {
 
 	public void changeMode(Stage primaryStage) {
 		try {
+
 			Parent root = (Parent) FXMLLoader.load(getClass().getResource(mode));
 			Scene scene = new Scene(root);
+			
 			primaryStage.setScene(scene);
 			primaryStage.sizeToScene();
 			primaryStage.show();

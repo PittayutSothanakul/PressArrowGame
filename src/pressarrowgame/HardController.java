@@ -12,6 +12,9 @@ import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -110,6 +113,7 @@ public class HardController {
 	@FXML
 	public void initialize() {
 		mode.setText("Hard Mode");
+		timeline = new Timeline();
 		imageView = new ImageView[8];
 		imageView[0] = imageView1;
 		imageView[1] = imageView2;
@@ -132,7 +136,7 @@ public class HardController {
 		if (timeline != null) {
 			timeline.stop();
 		}
-		timeline = new Timeline();
+
 		timeline.setCycleCount(Timeline.INDEFINITE);
 		KeyFrame frame = new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
 			@Override
@@ -543,6 +547,8 @@ public class HardController {
 	}
 
 	public void handleGiveUp(ActionEvent event) {
+		System.out.println("You giveup");
+		timeline.stop();
 		aPane.setDisable(true);
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("You giveup");

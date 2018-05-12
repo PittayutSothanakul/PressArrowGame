@@ -61,7 +61,7 @@ public class ScoreView implements java.util.Observer {
 		mode = Mode.getInstace();
 		player = Player.getInstace();
 		label.setText(String.format(
-				"%s\nPlayer : %s\nScores : %2d\nMax Combo : %2d\nCombo : %2d\nPerfect : %2d\nGood : %2d\nMiss : %2d ",
+				"=== %s ===\nPlayer : %s\nScores : %2d\nMax Combo : %2d\nCombo : %2d\nPerfect : %2d\nGood : %2d\nMiss : %2d ",
 				mode.getMode(), player.getName(), score.getScores(), score.getMaxCombo(), score.getCombo(),
 				score.getPerfect(), score.getGood(), score.getMiss()));
 	}

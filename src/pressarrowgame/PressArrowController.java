@@ -109,6 +109,7 @@ public class PressArrowController {
 
 	@FXML
 	public void initialize() {
+		timeline = new Timeline();
 		mode.setText("Easy Mode");
 		imageView = new ImageView[8];
 		imageView[0] = imageView1;
@@ -132,7 +133,6 @@ public class PressArrowController {
 		if (timeline != null) {
 			timeline.stop();
 		}
-		timeline = new Timeline();
 		timeline.setCycleCount(Timeline.INDEFINITE);
 		KeyFrame frame = new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
 			@Override
@@ -528,7 +528,6 @@ public class PressArrowController {
 	}
 
 	public void endGame() {
-		System.out.println("Aleeeeeeet");
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Time's up");
 		alert.setHeaderText(null);
@@ -544,6 +543,8 @@ public class PressArrowController {
 	}
 
 	public void handleGiveUp(ActionEvent event) {
+		System.out.println("You giveup");
+		timeline.stop();
 		aPane.setDisable(true);
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("You giveup");
