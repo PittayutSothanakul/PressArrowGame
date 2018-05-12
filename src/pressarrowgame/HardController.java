@@ -12,9 +12,6 @@ import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -27,7 +24,7 @@ import javafx.scene.image.ImageView;
 /**
  * 
  * @author Pittayut Sothanakul
- * @version 4-5-2018
+ * @version 12-5-2018
  *
  */
 public class HardController {
@@ -72,7 +69,8 @@ public class HardController {
 	@FXML
 	private Text txtScores;
 
-	private int[] rand = new int[8];
+	private int[] rand;
+	// private int[] rand = new int[8];
 	private ImageView[] imageView;
 	Image[] myImage = new Image[8];
 	Task runbar;
@@ -91,7 +89,7 @@ public class HardController {
 			checkPressed6, checkPressed7, checkPressed8 };
 	private boolean checkGameisRun = false;
 	private String dash = "";
-
+	private String checkKey = "";
 	private int combo = 0;
 	private int scores = 0;
 	private int countPerfect = 0;
@@ -112,8 +110,8 @@ public class HardController {
 
 	@FXML
 	public void initialize() {
-		mode.setText("Hard Mode");
 		timeline = new Timeline();
+		mode.setText("Easy Mode");
 		imageView = new ImageView[8];
 		imageView[0] = imageView1;
 		imageView[1] = imageView2;
@@ -136,7 +134,6 @@ public class HardController {
 		if (timeline != null) {
 			timeline.stop();
 		}
-
 		timeline.setCycleCount(Timeline.INDEFINITE);
 		KeyFrame frame = new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
 			@Override
@@ -198,7 +195,7 @@ public class HardController {
 						progressBar.setStyle("-fx-accent: black;");
 						dash = "over";
 					}
-					Thread.sleep(32);
+					Thread.sleep(22);
 					// updateMessage("20 milliseconds");
 					updateProgress(i + 1, 100);
 				}
@@ -209,40 +206,42 @@ public class HardController {
 	}
 
 	public void keyPressed(KeyEvent e) {
-		String keyPressed = "";
 		if (checkGameisRun == true) {
 			if (e.getCode() == KeyCode.SHIFT) {
-				keyPressed = "space";
 				pressedSpace();
 			} else if (e.getCode() == KeyCode.UP) {
-				keyPressed = "up";
-				pressedUp();
+				checkKey = "up";
+				// pressedUp();
+				pressedKey();
 			} else if (e.getCode() == KeyCode.DOWN) {
-				keyPressed = "down";
-				pressedDown();
+				checkKey = "down";
+				// pressedDown();
+				pressedKey();
 			} else if (e.getCode() == KeyCode.LEFT) {
-				keyPressed = "left";
-				pressedLeft();
+				checkKey = "left";
+				// pressedLeft();
+				pressedKey();
 			} else if (e.getCode() == KeyCode.RIGHT) {
-				keyPressed = "right";
-				pressedRight();
+				checkKey = "right";
+				// pressedRight();
+				pressedKey();
 			}
 		}
 
 		txtCombo.setText(Integer.toString(combo));
 		txtScores.setText(Integer.toString(scores));
 		System.out.println("===========press==========");
-		System.out.println(keyPressed);
+		System.out.println(checkKey);
 		System.out.println("combo = " + combo);
 		System.out.println("scores = " + scores);
 		maxCombo = Math.max(maxCombo, combo);
 		score.setMaxCombo(maxCombo);
 	}
 
-	private void pressedUp() {
-		for (int i = 0; i < imageView.length; i++) {
-			if (checkPressed[i] == true && i == imageView.length - 1 && imageView[i].getId() == "up") {
-				imageView[7].setVisible(false);
+	private void pressedKey() {
+		for (int i = 0; i < rand.length; i++) {
+			if (checkPressed[i] == true && i == rand.length - 1 && imageView[i].getId() == checkKey) {
+				imageView[rand.length - 1].setVisible(false);
 				checkPressed[i] = false;
 				combo++;
 				score.addCombo(1);
@@ -251,10 +250,10 @@ public class HardController {
 				checkRun = true;
 				System.out.println("Check run UP " + checkRun);
 				return;
-			} else if (checkPressed[i] == true && imageView[i].getId() == "up") {
+			} else if (checkPressed[i] == true && imageView[i].getId() == checkKey) {
 				imageView[i].setVisible(false);
 				checkPressed[i] = false;
-				if (i < imageView.length - 1) {
+				if (i < rand.length - 1) {
 					checkPressed[i + 1] = true;
 				}
 				if (maxCombo == 0) {
@@ -265,7 +264,7 @@ public class HardController {
 				scores += 10;
 				score.addScores(10);
 				break;
-			} else if (checkPressed[i] == true && imageView[i].getId() != "up") {
+			} else if (checkPressed[i] == true && imageView[i].getId() != checkKey) {
 				System.out.println("wrong key");
 				combo = 0;
 				score.setComboZero();
@@ -274,139 +273,6 @@ public class HardController {
 				scores -= 25;
 				score.addScores(-25);
 				System.out.println("wrong up");
-				keyword.setText("Miss!!!");
-				randArrow();
-			}
-			if (checkPressed[2] == true) {
-				keyword.setText("");
-			}
-		}
-	}
-
-	public void pressedDown() {
-		for (int i = 0; i < imageView.length; i++) {
-			if (checkPressed[i] == true && i == imageView.length - 1 && imageView[i].getId() == "down") {
-				imageView[7].setVisible(false);
-				checkPressed[i] = false;
-				combo++;
-				score.addCombo(1);
-				scores += 15;
-				score.addScores(15);
-				checkRun = true;
-				System.out.println("Check run DOWN " + checkRun);
-				return;
-			} else if (checkPressed[i] == true && imageView[i].getId() == "down") {
-				imageView[i].setVisible(false);
-				checkPressed[i] = false;
-				if (i < imageView.length - 1) {
-					checkPressed[i + 1] = true;
-				}
-				if (maxCombo == 0) {
-					maxCombo++;
-				}
-				combo++;
-				score.addCombo(1);
-				scores += 10;
-				score.addScores(10);
-				break;
-			} else if (checkPressed[i] == true && imageView[i].getId() != "down") {
-				System.out.println("wrong key");
-				combo = 0;
-				score.setComboZero();
-				countMiss++;
-				score.addMiss(1);
-				scores -= 25;
-				score.addScores(-25);
-				System.out.println("wrong down");
-				keyword.setText("Miss!!!");
-				randArrow();
-			}
-			if (checkPressed[2] == true) {
-				keyword.setText("");
-			}
-		}
-	}
-
-	public void pressedLeft() {
-		for (int i = 0; i < imageView.length; i++) {
-			if (checkPressed[i] == true && i == imageView.length - 1 && imageView[i].getId() == "left") {
-				imageView[7].setVisible(false);
-				checkPressed[i] = false;
-				combo++;
-				score.addCombo(1);
-				scores += 15;
-				score.addScores(15);
-				checkRun = true;
-				System.out.println("Check run LEFT " + checkRun);
-				return;
-			} else if (checkPressed[i] == true && imageView[i].getId() == "left") {
-				imageView[i].setVisible(false);
-				checkPressed[i] = false;
-				if (i < imageView.length - 1) {
-					checkPressed[i + 1] = true;
-				}
-				if (maxCombo == 0) {
-					maxCombo++;
-				}
-				combo++;
-				System.out.println(score);
-				score.addCombo(1);
-				scores += 10;
-				score.addScores(10);
-				break;
-			} else if (checkPressed[i] == true && imageView[i].getId() != "left") {
-				System.out.println("wrong key");
-				combo = 0;
-				score.setComboZero();
-				countMiss++;
-				score.addMiss(1);
-				scores -= 25;
-				score.addScores(-25);
-				System.out.println("wrong left");
-				keyword.setText("Miss!!!");
-				randArrow();
-			}
-			if (checkPressed[2] == true) {
-				keyword.setText("");
-			}
-		}
-	}
-
-	public void pressedRight() {
-		for (int i = 0; i < imageView.length; i++) {
-			if (checkPressed[i] == true && i == imageView.length - 1 && imageView[i].getId() == "right") {
-				imageView[7].setVisible(false);
-				checkPressed[i] = false;
-				combo++;
-				score.addCombo(1);
-				scores += 15;
-				score.addScores(15);
-				checkRun = true;
-				System.out.println("Check run RIGHT " + checkRun);
-				return;
-			} else if (checkPressed[i] == true && imageView[i].getId() == "right") {
-				imageView[i].setVisible(false);
-				checkPressed[i] = false;
-				if (i < imageView.length - 1) {
-					checkPressed[i + 1] = true;
-				}
-				if (maxCombo == 0) {
-					maxCombo++;
-				}
-				combo++;
-				score.addCombo(1);
-				scores += 10;
-				score.addScores(10);
-				break;
-			} else if (checkPressed[i] == true && imageView[i].getId() != "right") {
-				System.out.println("wrong key");
-				combo = 0;
-				score.setComboZero();
-				countMiss++;
-				score.addMiss(1);
-				scores -= 25;
-				score.addScores(-25);
-				System.out.println("wrong right");
 				keyword.setText("Miss!!!");
 				randArrow();
 			}
@@ -474,20 +340,23 @@ public class HardController {
 		checkRun = false;
 
 		if (timeSeconds >= 45 && timeSeconds <= 60) {
-			for (int i = 0; i < rand.length - 4; i++) {
+			rand = new int[4];
+			for (int i = 0; i < rand.length; i++) {
 				rand[i] = (int) (Math.random() * 8 + 1);
 				myImage[i] = new Image("images/image" + rand[i] + ".png");
 				imageView[i].setVisible(true);
 				imageView[i].setImage(myImage[i]);
 			}
 		} else if (timeSeconds >= 20 && timeSeconds < 45) {
-			for (int i = 0; i < rand.length - 2; i++) {
+			rand = new int[6];
+			for (int i = 0; i < rand.length; i++) {
 				rand[i] = (int) (Math.random() * 8 + 1);
 				myImage[i] = new Image("images/image" + rand[i] + ".png");
 				imageView[i].setVisible(true);
 				imageView[i].setImage(myImage[i]);
 			}
 		} else {
+			rand = new int[8];
 			for (int i = 0; i < rand.length; i++) {
 				rand[i] = (int) (Math.random() * 8 + 1);
 				myImage[i] = new Image("images/image" + rand[i] + ".png");
@@ -528,7 +397,7 @@ public class HardController {
 		checkPressed[5] = false;
 		checkPressed[6] = false;
 		checkPressed[7] = false;
-		checkRun = true;
+		// checkRun = true;
 	}
 
 	public void endGame() {
