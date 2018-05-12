@@ -12,6 +12,7 @@ import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -168,11 +169,6 @@ public class PressArrowController {
 		System.out.println("Hello " + player.getName());
 		doTime();
 		keyword.setText("Press the Arrow");
-
-		// ScoreView scoreView = new ScoreView(score);
-		// score.addObserver(scoreView);
-		// scoreView.run();
-
 		slider.setShowTickMarks(true);
 		slider.setShowTickLabels(true);
 		slider.setMajorTickUnit(10f);

@@ -82,7 +82,7 @@
                   <Pane prefHeight="77.0" prefWidth="0.0" />
                   <VBox prefHeight="66.0" prefWidth="468.0">
                      <children>
-                        <Label fx:id="keyword" alignment="CENTER" prefHeight="24.0" prefWidth="374.0" text="Please Click Start" textFill="#fc0303">
+                        <Label fx:id="keyword" alignment="CENTER" prefHeight="24.0" prefWidth="374.0" text="Press SpaceBar to Start" textFill="#fc0303">
                            <font>
                               <Font size="25.0" />
                            </font>
