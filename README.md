@@ -1,6 +1,10 @@
 # Pa5 PressArrowGame
 by  Pittayut Sithanakul 5910546678 and Patiphan Srisook    5910546422
 
+## Vision of the Program:
+PressArrowGame is the game that provide user to press up down left right key correctly following by Arrow in the Game to keep the scores as much.
+
+
 ## How to play
 
 1.)fill the name and click Enter.
@@ -41,4 +45,8 @@ by  Pittayut Sithanakul 5910546678 and Patiphan Srisook    5910546422
 
 9.)When Time's up the alert window will appear and back to home and send the Score to the Server.
 ![hard2](https://user-images.githubusercontent.com/25226462/39955232-772ac45a-55f5-11e8-979a-56386513a98e.jpg)
+
+## UML Diagram
+
+![uml](https://user-images.githubusercontent.com/25226462/39986262-5c8202de-578b-11e8-8ce5-bec76c51ca5d.jpg)
 
