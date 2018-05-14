@@ -50,6 +50,8 @@ public class ScoreView implements java.util.Observer {
 		stage.setTitle("Score");
 		stage.sizeToScene();
 		stage.setAlwaysOnTop(true);
+		stage.setX(250);
+		stage.setY(250);
 	}
 
 	/** Show the window and update the counter value. */

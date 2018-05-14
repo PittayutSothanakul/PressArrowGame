@@ -112,7 +112,7 @@ public class LoginController {
 		alert.setTitle("Hint !!");
 		alert.setHeaderText(null);
 		alert.setContentText(
-				"Pressed keys following the Arrow and\nPressed Shift then gage is running to Perfect to get Extra Score");
+				"Pressed keys following the Arrow and\nPressed Shift then gauge is running to Perfect to get Extra Score");
 		alert.show();
 	}
 
@@ -121,7 +121,7 @@ public class LoginController {
 		alert.setTitle("Hint !!");
 		alert.setHeaderText(null);
 		alert.setContentText(
-				"Pressed keys following the Arrow and\nPressed Shift then gage is running to Perfect to get Extra Score\n====The RedArrow is reverse! direction keys====");
+				"Pressed keys following the Arrow and\nPressed Shift then gauge is running to Perfect to get Extra Score\n====The RedArrow is reverse! direction keys====");
 		alert.show();
 	}
 }

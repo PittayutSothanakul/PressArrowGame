@@ -429,7 +429,7 @@ public class HardController {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("You giveup");
 		alert.setHeaderText(null);
-		alert.setContentText("Plaese cilck ok");
+		alert.setContentText("Please cilck ok");
 		backToHome();
 		alert.show();
 	}
