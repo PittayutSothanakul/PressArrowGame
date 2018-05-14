@@ -24,7 +24,9 @@ PressArrowGame is the game that provide user to press up down left right key cor
 ![game5](https://user-images.githubusercontent.com/25226462/39955194-08621fe6-55f5-11e8-8c0a-9310a8fa9c0b.jpg)
 
 
-5.)The ScoreView to Show Mode PlayerName and scores[Combo,MaxCombo,Perfect,Good,Miss].
+5.)The ScoreView Use Observer and player use singleton to Show Mode PlayerName and scores[Combo,MaxCombo,Perfect,Good,Miss].
+
+
 ![game7](https://user-images.githubusercontent.com/25226462/39955197-0d06ed24-55f5-11e8-9377-1e83fd8415d1.jpg)
 
 
