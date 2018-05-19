@@ -13,6 +13,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
+/**
+ * 
+ * @author Patiphan Srisook
+ *
+ */
 public class LoginController {
 	@FXML
 	private Button enterName;
@@ -48,7 +53,7 @@ public class LoginController {
 			player.setName(text);
 
 			nameField.setStyle("-fx-text-box-border: blue;");
-			System.out.println(player.getName());
+			// System.out.println(player.getName());
 			checkName = true;
 		} else {
 			nameField.setText("");

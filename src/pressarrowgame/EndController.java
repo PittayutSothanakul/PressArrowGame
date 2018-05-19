@@ -8,6 +8,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+/**
+ * Class for handle when game finish.
+ * 
+ * @author Patiphan Srisook
+ *
+ */
 public class EndController {
 	@FXML
 	private Button back;

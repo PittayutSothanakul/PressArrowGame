@@ -10,9 +10,7 @@ public class Game extends AbstractGame {
 
 
 	public Game() {
-		System.out.println("GameStart");
 		
-
 	}
 
 	public int getTime() {
@@ -25,31 +23,26 @@ public class Game extends AbstractGame {
 
 	@Override
 	protected void handleLeftKey() {
-		System.out.println("Press Up");
 
 	}
 
 	@Override
 	protected void handleRightKey() {
-		System.out.println("Press Down");
 
 	}
 
 	@Override
 	protected void handleUpKey() {
-		System.out.println("Press Left");
 
 	}
 
 	@Override
 	protected void handleDownKey() {
-		System.out.println("Press Right");
 
 	}
 
 	@Override
 	protected void gameLogic() {
-		System.out.println("Game is running");
 		if (time < 0) {
 			end();
 		}

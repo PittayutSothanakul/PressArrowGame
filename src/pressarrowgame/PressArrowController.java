@@ -126,7 +126,7 @@ public class PressArrowController {
 		imageView[5] = imageView6;
 		imageView[6] = imageView7;
 		imageView[7] = imageView8;
-		System.out.println(checkGameisRun);
+		// System.out.println(checkGameisRun);
 	}
 
 	public void setScore(Score score) {
@@ -151,7 +151,7 @@ public class PressArrowController {
 					aPane.setDisable(true);
 					endGame();
 					keyword.setText("==ENDGAME==");
-					System.out.println("======ENDGAME======");
+					// System.out.println("======ENDGAME======");
 				}
 			}
 		});
@@ -163,10 +163,10 @@ public class PressArrowController {
 	public void handle(ActionEvent event) {
 		score.addObserver(scoreView);
 		checkGameisRun = true;
-		System.out.println("handle : " + checkGameisRun);
+		// System.out.println("handle : " + checkGameisRun);
 		start.setVisible(false);
 		Player player = Player.getInstace();
-		System.out.println("Hello " + player.getName());
+		// System.out.println("Hello " + player.getName());
 		doTime();
 		keyword.setText("Press the Arrow");
 		slider.setShowTickMarks(true);
@@ -194,7 +194,7 @@ public class PressArrowController {
 						progressBar.setStyle("-fx-accent: red;");
 						dash = "good";
 					} else if (i >= 99) {
-						System.out.println("It over Bonus");
+						// System.out.println("It over Bonus");
 						progressBar.setStyle("-fx-accent: black;");
 						dash = "over";
 					}
@@ -233,10 +233,10 @@ public class PressArrowController {
 
 		txtCombo.setText(Integer.toString(combo));
 		txtScores.setText(Integer.toString(scores));
-		System.out.println("===========press==========");
-		System.out.println(checkKey);
-		System.out.println("combo = " + combo);
-		System.out.println("scores = " + scores);
+		// System.out.println("===========press==========");
+		// System.out.println(checkKey);
+		// System.out.println("combo = " + combo);
+		// System.out.println("scores = " + scores);
 		maxCombo = Math.max(maxCombo, combo);
 		score.setMaxCombo(maxCombo);
 	}
@@ -251,7 +251,7 @@ public class PressArrowController {
 				scores += 15;
 				score.addScores(15);
 				checkRun = true;
-				System.out.println("Check run UP " + checkRun);
+				// System.out.println("Check run UP " + checkRun);
 				return;
 			} else if (checkPressed[i] == true && imageView[i].getId() == checkKey) {
 				imageView[i].setVisible(false);
@@ -268,14 +268,14 @@ public class PressArrowController {
 				score.addScores(10);
 				break;
 			} else if (checkPressed[i] == true && imageView[i].getId() != checkKey) {
-				System.out.println("wrong key");
+				// System.out.println("wrong key");
 				combo = 0;
 				score.setComboZero();
 				countMiss++;
 				score.addMiss(1);
 				scores -= 25;
 				score.addScores(-25);
-				System.out.println("wrong up");
+				// System.out.println("wrong up");
 				keyword.setText("Miss!!!");
 				randArrow();
 			}
@@ -287,7 +287,7 @@ public class PressArrowController {
 
 	public void pressedSpace() {
 		if (dash.equals("perfect") && checkRun == true) {
-			System.out.println("Get PERFECT");
+			// System.out.println("Get PERFECT");
 			keyword.setText("****PERFECT****");
 			countPerfect++;
 			score.addPerfect(1);
@@ -297,7 +297,7 @@ public class PressArrowController {
 			score.addScores(30);
 			randArrow();
 		} else if (dash.equals("good") && checkRun == true) {
-			System.out.println("Get GOOD");
+			// System.out.println("Get GOOD");
 			keyword.setText("**GooD**");
 			countGood++;
 			score.addGood(1);
@@ -307,13 +307,13 @@ public class PressArrowController {
 			score.addScores(15);
 			randArrow();
 		} else if (dash.equals("over") && checkRun == true) {
-			System.out.println("Get over bonus");
+			// System.out.println("Get over bonus");
 			keyword.setText("Time's up to bonus");
 			randArrow();
 		} else {
 			keyword.setText("Miss!!!");
-			System.out.println("WORNG SPACE");
-			System.out.println("Miss");
+			// System.out.println("WORNG SPACE");
+			// System.out.println("Miss");
 			countMiss++;
 			score.addMiss(1);
 			combo = 0;
@@ -325,13 +325,13 @@ public class PressArrowController {
 	}
 
 	public void randArrow() {
-		System.out.println("***********************");
-		System.out.println("combo = " + combo);
-		System.out.println("max combo = " + maxCombo);
-		System.out.println("perfect = " + countPerfect);
-		System.out.println("good = " + countGood);
-		System.out.println("miss = " + countMiss);
-		System.out.println("***********************");
+		// System.out.println("***********************");
+		// System.out.println("combo = " + combo);
+		// System.out.println("max combo = " + maxCombo);
+		// System.out.println("perfect = " + countPerfect);
+		// System.out.println("good = " + countGood);
+		// System.out.println("miss = " + countMiss);
+		// System.out.println("***********************");
 		try {
 			Thread.sleep(22);
 		} catch (InterruptedException e) {
@@ -407,11 +407,11 @@ public class PressArrowController {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Time's up");
 		alert.setHeaderText(null);
-		alert.setContentText("Plaese cilck ok");
+		alert.setContentText("Please cilck ok");
 		// alert.showAndWait();
-		alert.show();
 		backToHome();
-
+		alert.show();
+	
 	}
 
 	public void backToHome() {
@@ -419,7 +419,7 @@ public class PressArrowController {
 	}
 
 	public void handleGiveUp(ActionEvent event) {
-		System.out.println("You giveup");
+		// System.out.println("You giveup");
 		timeline.stop();
 		aPane.setDisable(true);
 		Alert alert = new Alert(AlertType.INFORMATION);
